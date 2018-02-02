@@ -9,8 +9,13 @@
 <html>
 <head>
     <title>Title</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery.js"></script>
+
+
 </head>
 <body>
-    this is a page in jsp dir
+<script src="js/bootstrap.min.js"></script>
+<button class=".btn-lg">我是一个长按钮</button>
 </body>
 </html>
