@@ -12,12 +12,12 @@ public class User {
     public User(){
         super();
     }
-
     public User(Long id, String userName, Integer userAge, String userHobby) {
         this.id = id;
         this.userName = userName;
         this.userAge = userAge;
         this.userHobby = userHobby;
+
     }
 
     public Long getId() {
