@@ -1,54 +1,42 @@
 package com.hotel.bean;
 
 public class User {
-    private Long id;
+    private String id;//管理员id
 
-    private String userName;
+    private String username;//管理员账号
 
-    private Integer userAge;
+    private String password;//管理员密码
 
-    private String userHobby;
-
-    public User(){
-        super();
+    public User() {
     }
-    public User(Long id, String userName, Integer userAge, String userHobby) {
+
+    public User(String id, String username, String password) {
         this.id = id;
-        this.userName = userName;
-        this.userAge = userAge;
-        this.userHobby = userHobby;
-
+        this.username = username;
+        this.password = password;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
     }
 
-    public Integer getUserAge() {
-        return userAge;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserAge(Integer userAge) {
-        this.userAge = userAge;
-    }
-
-    public String getUserHobby() {
-        return userHobby;
-    }
-
-    public void setUserHobby(String userHobby) {
-        this.userHobby = userHobby == null ? null : userHobby.trim();
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 }

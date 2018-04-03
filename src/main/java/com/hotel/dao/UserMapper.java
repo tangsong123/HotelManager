@@ -5,15 +5,15 @@ import com.hotel.bean.User;
 import java.util.List;
 
 public interface UserMapper {
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(String id);
 
     int insert(User record);
 
     int insertSelective(User record);
 
-    List<User> userList();
+    User selectByPrimaryKey(String id);
 
-    User selectByPrimaryKey(Long id);
+    User selectByUsername(String username);
 
     int updateByPrimaryKeySelective(User record);
 
