@@ -74,6 +74,10 @@ public class UserController {
     public String fun9(){
         return "wysiwyg-editors";
     }
+    @RequestMapping("roomList")
+    public String fun10(){
+        return "roomList";
+    }
 
 
 
