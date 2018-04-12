@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hotel.dao.RoomMessageMapper" >
+  <resultMap id="BaseResultMap" type="com.hotel.bean.RoomMessage" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="room_id" property="roomId" jdbcType="BIGINT" />
+    <result column="room_name" property="roomName" jdbcType="VARCHAR" />
+    <result column="room_type" property="roomType" jdbcType="INTEGER" />
+    <result column="room_float" property="roomFloat" jdbcType="BIGINT" />
+    <result column="room_bed_num" property="roomBedNum" jdbcType="BIGINT" />
+    <result column="is_tv" property="isTv" jdbcType="VARCHAR" />
+    <result column="is_window" property="isWindow" jdbcType="VARCHAR" />
+    <result column="is_breakfirst" property="isBreakfirst" jdbcType="VARCHAR" />
+    <result column="is_bathroom" property="isBathroom" jdbcType="VARCHAR" />
+    <result column="is_blower" property="isBlower" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="proprice" property="proprice" jdbcType="DECIMAL" />
+    <result column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="valid" property="valid" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="room_create_time" property="roomCreateTime" jdbcType="TIMESTAMP" />
+    <result column="room_last_time" property="roomLastTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, room_id, room_name, room_type, room_float, room_bed_num, is_tv, is_window, is_breakfirst, 
+    is_bathroom, is_blower, price, proprice, uuid, status, valid, remark, room_create_time, 
+    room_last_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from hotel_room_message
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from hotel_room_message
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hotel.bean.RoomMessage" >
+    insert into hotel_room_message (id, room_id, room_name, 
+      room_type, room_float, room_bed_num, 
+      is_tv, is_window, is_breakfirst, 
+      is_bathroom, is_blower, price, 
+      proprice, uuid, status, 
+      valid, remark, room_create_time, 
+      room_last_time)
+    values (#{id,jdbcType=BIGINT}, #{roomId,jdbcType=BIGINT}, #{roomName,jdbcType=VARCHAR}, 
+      #{roomType,jdbcType=INTEGER}, #{roomFloat,jdbcType=BIGINT}, #{roomBedNum,jdbcType=BIGINT}, 
+      #{isTv,jdbcType=VARCHAR}, #{isWindow,jdbcType=VARCHAR}, #{isBreakfirst,jdbcType=VARCHAR}, 
+      #{isBathroom,jdbcType=VARCHAR}, #{isBlower,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
+      #{proprice,jdbcType=DECIMAL}, #{uuid,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{valid,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{roomCreateTime,jdbcType=TIMESTAMP}, 
+      #{roomLastTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hotel.bean.RoomMessage" >
+    insert into hotel_room_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roomId != null" >
+        room_id,
+      </if>
+      <if test="roomName != null" >
+        room_name,
+      </if>
+      <if test="roomType != null" >
+        room_type,
+      </if>
+      <if test="roomFloat != null" >
+        room_float,
+      </if>
+      <if test="roomBedNum != null" >
+        room_bed_num,
+      </if>
+      <if test="isTv != null" >
+        is_tv,
+      </if>
+      <if test="isWindow != null" >
+        is_window,
+      </if>
+      <if test="isBreakfirst != null" >
+        is_breakfirst,
+      </if>
+      <if test="isBathroom != null" >
+        is_bathroom,
+      </if>
+      <if test="isBlower != null" >
+        is_blower,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="proprice != null" >
+        proprice,
+      </if>
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="valid != null" >
+        valid,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="roomCreateTime != null" >
+        room_create_time,
+      </if>
+      <if test="roomLastTime != null" >
+        room_last_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="roomId != null" >
+        #{roomId,jdbcType=BIGINT},
+      </if>
+      <if test="roomName != null" >
+        #{roomName,jdbcType=VARCHAR},
+      </if>
+      <if test="roomType != null" >
+        #{roomType,jdbcType=INTEGER},
+      </if>
+      <if test="roomFloat != null" >
+        #{roomFloat,jdbcType=BIGINT},
+      </if>
+      <if test="roomBedNum != null" >
+        #{roomBedNum,jdbcType=BIGINT},
+      </if>
+      <if test="isTv != null" >
+        #{isTv,jdbcType=VARCHAR},
+      </if>
+      <if test="isWindow != null" >
+        #{isWindow,jdbcType=VARCHAR},
+      </if>
+      <if test="isBreakfirst != null" >
+        #{isBreakfirst,jdbcType=VARCHAR},
+      </if>
+      <if test="isBathroom != null" >
+        #{isBathroom,jdbcType=VARCHAR},
+      </if>
+      <if test="isBlower != null" >
+        #{isBlower,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="proprice != null" >
+        #{proprice,jdbcType=DECIMAL},
+      </if>
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="valid != null" >
+        #{valid,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="roomCreateTime != null" >
+        #{roomCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roomLastTime != null" >
+        #{roomLastTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hotel.bean.RoomMessage" >
+    update hotel_room_message
+    <set >
+      <if test="roomId != null" >
+        room_id = #{roomId,jdbcType=BIGINT},
+      </if>
+      <if test="roomName != null" >
+        room_name = #{roomName,jdbcType=VARCHAR},
+      </if>
+      <if test="roomType != null" >
+        room_type = #{roomType,jdbcType=INTEGER},
+      </if>
+      <if test="roomFloat != null" >
+        room_float = #{roomFloat,jdbcType=BIGINT},
+      </if>
+      <if test="roomBedNum != null" >
+        room_bed_num = #{roomBedNum,jdbcType=BIGINT},
+      </if>
+      <if test="isTv != null" >
+        is_tv = #{isTv,jdbcType=VARCHAR},
+      </if>
+      <if test="isWindow != null" >
+        is_window = #{isWindow,jdbcType=VARCHAR},
+      </if>
+      <if test="isBreakfirst != null" >
+        is_breakfirst = #{isBreakfirst,jdbcType=VARCHAR},
+      </if>
+      <if test="isBathroom != null" >
+        is_bathroom = #{isBathroom,jdbcType=VARCHAR},
+      </if>
+      <if test="isBlower != null" >
+        is_blower = #{isBlower,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="proprice != null" >
+        proprice = #{proprice,jdbcType=DECIMAL},
+      </if>
+      <if test="uuid != null" >
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="valid != null" >
+        valid = #{valid,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="roomCreateTime != null" >
+        room_create_time = #{roomCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roomLastTime != null" >
+        room_last_time = #{roomLastTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hotel.bean.RoomMessage" >
+    update hotel_room_message
+    set room_id = #{roomId,jdbcType=BIGINT},
+      room_name = #{roomName,jdbcType=VARCHAR},
+      room_type = #{roomType,jdbcType=INTEGER},
+      room_float = #{roomFloat,jdbcType=BIGINT},
+      room_bed_num = #{roomBedNum,jdbcType=BIGINT},
+      is_tv = #{isTv,jdbcType=VARCHAR},
+      is_window = #{isWindow,jdbcType=VARCHAR},
+      is_breakfirst = #{isBreakfirst,jdbcType=VARCHAR},
+      is_bathroom = #{isBathroom,jdbcType=VARCHAR},
+      is_blower = #{isBlower,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      proprice = #{proprice,jdbcType=DECIMAL},
+      uuid = #{uuid,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      room_create_time = #{roomCreateTime,jdbcType=TIMESTAMP},
+      room_last_time = #{roomLastTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
