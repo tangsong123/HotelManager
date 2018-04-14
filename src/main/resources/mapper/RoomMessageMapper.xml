@@ -18,40 +18,46 @@
     <result column="uuid" property="uuid" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="valid" property="valid" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="room_create_time" property="roomCreateTime" jdbcType="TIMESTAMP" />
     <result column="room_last_time" property="roomLastTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, room_id, room_name, room_type, room_float, room_bed_num, is_tv, is_window, is_breakfirst, 
-    is_bathroom, is_blower, price, proprice, uuid, status, valid, remark, room_create_time, 
+    id, room_id, room_name, room_type, room_float, room_bed_num, is_tv, is_window, is_breakfirst,
+    is_bathroom, is_blower, price, proprice, uuid, status, valid, url, remark, room_create_time,
     room_last_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from hotel_room_message
     where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from hotel_room_message
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from hotel_room_message
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.hotel.bean.RoomMessage" >
-    insert into hotel_room_message (id, room_id, room_name, 
-      room_type, room_float, room_bed_num, 
-      is_tv, is_window, is_breakfirst, 
-      is_bathroom, is_blower, price, 
-      proprice, uuid, status, 
-      valid, remark, room_create_time, 
-      room_last_time)
-    values (#{id,jdbcType=BIGINT}, #{roomId,jdbcType=BIGINT}, #{roomName,jdbcType=VARCHAR}, 
-      #{roomType,jdbcType=INTEGER}, #{roomFloat,jdbcType=BIGINT}, #{roomBedNum,jdbcType=BIGINT}, 
-      #{isTv,jdbcType=VARCHAR}, #{isWindow,jdbcType=VARCHAR}, #{isBreakfirst,jdbcType=VARCHAR}, 
-      #{isBathroom,jdbcType=VARCHAR}, #{isBlower,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
-      #{proprice,jdbcType=DECIMAL}, #{uuid,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{valid,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{roomCreateTime,jdbcType=TIMESTAMP}, 
-      #{roomLastTime,jdbcType=TIMESTAMP})
+    insert into hotel_room_message (id, room_id, room_name,
+    room_type, room_float, room_bed_num,
+    is_tv, is_window, is_breakfirst,
+    is_bathroom, is_blower, price,
+    proprice, uuid, status,
+    valid, url, remark,
+    room_create_time, room_last_time)
+    values (#{id,jdbcType=BIGINT}, #{roomId,jdbcType=BIGINT}, #{roomName,jdbcType=VARCHAR},
+    #{roomType,jdbcType=INTEGER}, #{roomFloat,jdbcType=BIGINT}, #{roomBedNum,jdbcType=BIGINT},
+    #{isTv,jdbcType=VARCHAR}, #{isWindow,jdbcType=VARCHAR}, #{isBreakfirst,jdbcType=VARCHAR},
+    #{isBathroom,jdbcType=VARCHAR}, #{isBlower,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL},
+    #{proprice,jdbcType=DECIMAL}, #{uuid,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+    #{valid,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+    #{roomCreateTime,jdbcType=TIMESTAMP}, #{roomLastTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.hotel.bean.RoomMessage" >
     insert into hotel_room_message
@@ -103,6 +109,9 @@
       </if>
       <if test="valid != null" >
         valid,
+      </if>
+      <if test="url != null" >
+        url,
       </if>
       <if test="remark != null" >
         remark,
@@ -163,6 +172,9 @@
       <if test="valid != null" >
         #{valid,jdbcType=INTEGER},
       </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
       </if>
@@ -222,6 +234,9 @@
       <if test="valid != null" >
         valid = #{valid,jdbcType=INTEGER},
       </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
       </if>
@@ -251,6 +266,7 @@
       uuid = #{uuid,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       valid = #{valid,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
       room_create_time = #{roomCreateTime,jdbcType=TIMESTAMP},
       room_last_time = #{roomLastTime,jdbcType=TIMESTAMP}

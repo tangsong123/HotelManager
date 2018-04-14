@@ -36,6 +36,8 @@ public class RoomMessage {
 
     private Integer valid;
 
+    private String url;
+
     private String remark;
 
     private Date roomCreateTime;
@@ -45,7 +47,7 @@ public class RoomMessage {
     public RoomMessage() {
     }
 
-    public RoomMessage(Long id, Long roomId, String roomName, Integer roomType, Long roomFloat, Long roomBedNum, String isTv, String isWindow, String isBreakfirst, String isBathroom, String isBlower, BigDecimal price, BigDecimal proprice, String uuid, Integer status, Integer valid, String remark, Date roomCreateTime, Date roomLastTime) {
+    public RoomMessage(Long id, Long roomId, String roomName, Integer roomType, Long roomFloat, Long roomBedNum, String isTv, String isWindow, String isBreakfirst, String isBathroom, String isBlower, BigDecimal price, BigDecimal proprice, String uuid, Integer status, Integer valid, String url, String remark, Date roomCreateTime, Date roomLastTime) {
         this.id = id;
         this.roomId = roomId;
         this.roomName = roomName;
@@ -62,6 +64,7 @@ public class RoomMessage {
         this.uuid = uuid;
         this.status = status;
         this.valid = valid;
+        this.url = url;
         this.remark = remark;
         this.roomCreateTime = roomCreateTime;
         this.roomLastTime = roomLastTime;
@@ -193,6 +196,14 @@ public class RoomMessage {
 
     public void setValid(Integer valid) {
         this.valid = valid;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url == null ? null : url.trim();
     }
 
     public String getRemark() {

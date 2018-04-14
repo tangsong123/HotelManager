@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -42,6 +43,21 @@ public class UserController {
 //    public String fun1(){
 //        return "index";
 //    }
+    //loginOut
+    @RequestMapping("loginOut")
+    public String loginOut(){
+        return "login";
+    }
+    //rili日历
+    @RequestMapping("rili")
+    public String rili(){
+        return "rili";
+    }
+    //入住
+    @RequestMapping("ruzhu")
+    public String ruzhu(){
+        return "ruzhu";
+    }
     @RequestMapping("about")
     public String fun2(){
         return "about";
@@ -74,11 +90,11 @@ public class UserController {
     public String fun9(){
         return "wysiwyg-editors";
     }
-    @RequestMapping("roomList")
-    public String fun10(){
-        return "roomList";
-    }
-
+//    @RequestMapping("roomList")
+//    public String fun10(){
+//        return "roomList";
+//    }
+//
 
 
     //获取所有User

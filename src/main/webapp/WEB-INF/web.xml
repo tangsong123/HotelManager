@@ -13,6 +13,10 @@
     <param-name>mybatis</param-name>
     <param-value>classpath:SqlMapConfig.xml</param-value>
   </context-param>
+  <context-param>
+    <param-name>mybatis-config</param-name>
+    <param-value>classpath:mybatis-config.xml</param-value>
+  </context-param>
   <!-- 编码过滤器 -->
   <filter>
     <filter-name>encodingFilter</filter-name>
@@ -81,6 +85,16 @@
     <!-- 此处可以可以配置成*.do，对应struts的后缀习惯 -->
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+  <error-page>
+    <exception-type>java.lang.Throwable</exception-type>
+    <location>/error/500.jsp</location>
+  </error-page>
+
+  <error-page>
+    <error-code>404</error-code>
+    <location>/error/404.jsp</location>
+  </error-page>
+
   <welcome-file-list>
     <welcome-file>/index.jsp</welcome-file>
   </welcome-file-list>

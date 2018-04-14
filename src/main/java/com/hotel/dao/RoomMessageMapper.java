@@ -2,6 +2,8 @@ package com.hotel.dao;
 
 import com.hotel.bean.RoomMessage;
 
+import java.util.List;
+
 public interface RoomMessageMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -14,4 +16,7 @@ public interface RoomMessageMapper {
     int updateByPrimaryKeySelective(RoomMessage record);
 
     int updateByPrimaryKey(RoomMessage record);
+
+    List<RoomMessage> selectAll();
+
 }
