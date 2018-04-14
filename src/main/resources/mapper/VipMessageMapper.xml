@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hotel.dao.VipMessageMapper" >
+  <resultMap id="BaseResultMap" type="com.hotel.bean.VipMessage" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="vip_phonenum" property="vipPhonenum" jdbcType="BIGINT" />
+    <result column="vip_name" property="vipName" jdbcType="VARCHAR" />
+    <result column="vip_type" property="vipType" jdbcType="INTEGER" />
+    <result column="vip_birthday" property="vipBirthday" jdbcType="VARCHAR" />
+    <result column="vip_hobby" property="vipHobby" jdbcType="VARCHAR" />
+    <result column="spending_power" property="spendingPower" jdbcType="DECIMAL" />
+    <result column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="times" property="times" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="valid" property="valid" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="vip_create_time" property="vipCreateTime" jdbcType="TIMESTAMP" />
+    <result column="vip_last_time" property="vipLastTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, vip_phonenum, vip_name, vip_type, vip_birthday, vip_hobby, spending_power, uuid, 
+    times, status, valid, remark, vip_create_time, vip_last_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from vip_message
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from vip_message
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from vip_message
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hotel.bean.VipMessage" >
+    insert into vip_message (id, vip_phonenum, vip_name, 
+      vip_type, vip_birthday, vip_hobby, 
+      spending_power, uuid, times, 
+      status, valid, remark, 
+      vip_create_time, vip_last_time)
+    values (#{id,jdbcType=BIGINT}, #{vipPhonenum,jdbcType=BIGINT}, #{vipName,jdbcType=VARCHAR}, 
+      #{vipType,jdbcType=INTEGER}, #{vipBirthday,jdbcType=VARCHAR}, #{vipHobby,jdbcType=VARCHAR}, 
+      #{spendingPower,jdbcType=DECIMAL}, #{uuid,jdbcType=VARCHAR}, #{times,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{valid,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{vipCreateTime,jdbcType=TIMESTAMP}, #{vipLastTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hotel.bean.VipMessage" >
+    insert into vip_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="vipPhonenum != null" >
+        vip_phonenum,
+      </if>
+      <if test="vipName != null" >
+        vip_name,
+      </if>
+      <if test="vipType != null" >
+        vip_type,
+      </if>
+      <if test="vipBirthday != null" >
+        vip_birthday,
+      </if>
+      <if test="vipHobby != null" >
+        vip_hobby,
+      </if>
+      <if test="spendingPower != null" >
+        spending_power,
+      </if>
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="times != null" >
+        times,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="valid != null" >
+        valid,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="vipCreateTime != null" >
+        vip_create_time,
+      </if>
+      <if test="vipLastTime != null" >
+        vip_last_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="vipPhonenum != null" >
+        #{vipPhonenum,jdbcType=BIGINT},
+      </if>
+      <if test="vipName != null" >
+        #{vipName,jdbcType=VARCHAR},
+      </if>
+      <if test="vipType != null" >
+        #{vipType,jdbcType=INTEGER},
+      </if>
+      <if test="vipBirthday != null" >
+        #{vipBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="vipHobby != null" >
+        #{vipHobby,jdbcType=VARCHAR},
+      </if>
+      <if test="spendingPower != null" >
+        #{spendingPower,jdbcType=DECIMAL},
+      </if>
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="times != null" >
+        #{times,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="valid != null" >
+        #{valid,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="vipCreateTime != null" >
+        #{vipCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vipLastTime != null" >
+        #{vipLastTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hotel.bean.VipMessage" >
+    update vip_message
+    <set >
+      <if test="vipPhonenum != null" >
+        vip_phonenum = #{vipPhonenum,jdbcType=BIGINT},
+      </if>
+      <if test="vipName != null" >
+        vip_name = #{vipName,jdbcType=VARCHAR},
+      </if>
+      <if test="vipType != null" >
+        vip_type = #{vipType,jdbcType=INTEGER},
+      </if>
+      <if test="vipBirthday != null" >
+        vip_birthday = #{vipBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="vipHobby != null" >
+        vip_hobby = #{vipHobby,jdbcType=VARCHAR},
+      </if>
+      <if test="spendingPower != null" >
+        spending_power = #{spendingPower,jdbcType=DECIMAL},
+      </if>
+      <if test="uuid != null" >
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="times != null" >
+        times = #{times,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="valid != null" >
+        valid = #{valid,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="vipCreateTime != null" >
+        vip_create_time = #{vipCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vipLastTime != null" >
+        vip_last_time = #{vipLastTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hotel.bean.VipMessage" >
+    update vip_message
+    set vip_phonenum = #{vipPhonenum,jdbcType=BIGINT},
+      vip_name = #{vipName,jdbcType=VARCHAR},
+      vip_type = #{vipType,jdbcType=INTEGER},
+      vip_birthday = #{vipBirthday,jdbcType=VARCHAR},
+      vip_hobby = #{vipHobby,jdbcType=VARCHAR},
+      spending_power = #{spendingPower,jdbcType=DECIMAL},
+      uuid = #{uuid,jdbcType=VARCHAR},
+      times = #{times,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      valid = #{valid,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      vip_create_time = #{vipCreateTime,jdbcType=TIMESTAMP},
+      vip_last_time = #{vipLastTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
