@@ -4,37 +4,24 @@ import java.util.Date;
 
 public class VipMessage {
     private Long id;
-
     private Long vipPhonenum;
-
     private String vipName;
-
     private Integer vipType;
-
     private String vipBirthday;
-
     private String vipHobby;
-
     private Long spendingPower;
-
     private String uuid;
-
     private Integer times;
-
     private Integer status;
-
     private Integer valid;
-
     private String remark;
-
-    private Date vipCreateTime;
-
-    private Date vipLastTime;
+    private String vipCreateTime;
+    private String vipLastTime;
 
     public VipMessage() {
     }
 
-    public VipMessage(Long id, Long vipPhonenum, String vipName, Integer vipType, String vipBirthday, String vipHobby, Long spendingPower, String uuid, Integer times, Integer status, Integer valid, String remark, Date vipCreateTime, Date vipLastTime) {
+    public VipMessage(Long id, Long vipPhonenum, String vipName, Integer vipType, String vipBirthday, String vipHobby, Long spendingPower, String uuid, Integer times, Integer status, Integer valid, String remark, String vipCreateTime, String vipLastTime) {
         this.id = id;
         this.vipPhonenum = vipPhonenum;
         this.vipName = vipName;
@@ -147,19 +134,19 @@ public class VipMessage {
         this.remark = remark == null ? null : remark.trim();
     }
 
-    public Date getVipCreateTime() {
+    public String getVipCreateTime() {
         return vipCreateTime;
     }
 
-    public void setVipCreateTime(Date vipCreateTime) {
+    public void setVipCreateTime(String vipCreateTime) {
         this.vipCreateTime = vipCreateTime;
     }
 
-    public Date getVipLastTime() {
+    public String getVipLastTime() {
         return vipLastTime;
     }
 
-    public void setVipLastTime(Date vipLastTime) {
+    public void setVipLastTime(String vipLastTime) {
         this.vipLastTime = vipLastTime;
     }
 }

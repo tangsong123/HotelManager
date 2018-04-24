@@ -32,10 +32,103 @@
     <include refid="Base_Column_List" />
     from vip_message
   </select>
+  <select id="selectVipOrderByCreateTime" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from vip_message
+    where valid=1
+    ORDER BY vip_create_time DESC
+    limit #{index},#{pageSize}
+  </select>
+  <select id="selectVipByCondition" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM vip_message
+    WHERE 1=1
+    <if test="vipType!=null">
+      and vip_type=#{vipType}
+    </if>
+    <if test="vipName!=null">
+      and vip_name=#{vipName}
+    </if>
+    <if test="status!=null">
+      and status=#{status}
+    </if>
+    <if test="valid!=null">
+      and valid=#{valid}
+    </if>
+    <if test="spendingPower!=null">
+
+      <if test="spendingPower &lt;= 100">
+      AND spending_power &lt;= 100
+    </if>
+      <if test="spendingPower &gt; 100 &amp; spendingPower &lt;= 200">
+        AND spending_power &gt; 100
+        AND spending_power &lt;= 200
+      </if>
+      <if test="spendingPower &gt; 200 &amp; spendingPower &lt;= 500">
+        AND spending_power &gt; 200
+        AND spending_power &lt;= 500
+      </if>
+      <if test="spendingPower &gt; 500 &amp; spendingPower &lt;= 1000">
+        AND spending_power &gt; 500
+        AND spending_power &lt;= 1000
+      </if>
+      <if test="spendingPower &gt; 1000">
+        AND spending_power &gt; 1000
+      </if>
+    </if>
+    limit #{index},#{pageSize}
+  </select>
+  <select id="selectVipCountByCondition" resultType="java.lang.Integer">
+    SELECT
+    COUNT(id)
+    FROM vip_message
+    WHERE 1=1
+    <if test="vipType!=null">
+      and vip_type=#{vipType}
+    </if>
+    <if test="vipName!=null">
+      and vip_name=#{vipName}
+    </if>
+    <if test="status!=null">
+      and status=#{status}
+    </if>
+    <if test="valid!=null">
+      and valid=#{valid}
+    </if>
+    <if test="spendingPower!=null">
+
+      <if test="spendingPower &lt;= 100">
+        AND spending_power &lt;= 100
+      </if>
+      <if test="spendingPower &gt; 100 &amp; spendingPower &lt;= 200">
+        AND spending_power &gt; 100
+        AND spending_power &lt;= 200
+      </if>
+      <if test="spendingPower &gt; 200 &amp; spendingPower &lt;= 500">
+        AND spending_power &gt; 200
+        AND spending_power &lt;= 500
+      </if>
+      <if test="spendingPower &gt; 500 &amp; spendingPower &lt;= 1000">
+        AND spending_power &gt; 500
+        AND spending_power &lt;= 1000
+      </if>
+      <if test="spendingPower &gt; 1000">
+        AND spending_power &gt; 1000
+      </if>
+    </if>
+  </select>
+  <select id="selectCount" resultType="java.lang.Integer">
+    select
+    COUNT(id)
+    from vip_message
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from vip_message
     where id = #{id,jdbcType=BIGINT}
   </delete>
+
   <insert id="insert" parameterType="com.hotel.bean.VipMessage" >
     insert into vip_message (id, vip_phonenum, vip_name, 
       vip_type, vip_birthday, vip_hobby, 

@@ -2,6 +2,7 @@ package com.hotel.dao;
 
 import com.hotel.bean.RoomMessage;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface RoomMessageMapper {
@@ -18,5 +19,8 @@ public interface RoomMessageMapper {
     int updateByPrimaryKey(RoomMessage record);
 
     List<RoomMessage> selectAll();
+    List<RoomMessage> selectRoomByPage(HashMap params);
 
+    Integer selectCount();
+    List<RoomMessage> selectByUnique(RoomMessage record);
 }

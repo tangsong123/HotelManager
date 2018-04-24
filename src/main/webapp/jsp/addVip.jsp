@@ -96,56 +96,26 @@
         <!-- left, vertical navbar -->
         <div class="col-md-2 bootstrap-admin-col-left">
             <ul class="nav navbar-collapse collapse bootstrap-admin-navbar-side">
-                <li >
+                <li class="active">
                     <a href="index.jsp"><i class="glyphicon glyphicon-chevron-right"></i> 首页</a>
                 </li>
                 <li >
                     <a href="about.jsp"><i class="glyphicon glyphicon-chevron-right"></i> 关于我们</a>
                 </li>
-                <li class="disabled">
-                    <a href="#"><i class="glyphicon glyphicon-chevron-right"></i> 日历</a><!-- calendar.html -->
-                </li>
-                <li class="disabled">
-                    <a href="#"><i class="glyphicon glyphicon-chevron-right"></i> 统计图表</a><!-- stats.html -->
-                </li>
-                <li class="active">
-                    <a href="forms.jsp"><i class="glyphicon glyphicon-chevron-right"></i> 表单</a>
+                <li >
+                    <a href="#"><i class="glyphicon glyphicon-chevron-right"></i> 节假日</a><!-- calendar.html -->
                 </li>
                 <li >
-                    <a href="tables.jsp"><i class="glyphicon glyphicon-chevron-right"></i> 数据表格</a>
-                </li>
-                <li >
-                    <a href="buttons-and-icons.jsp"><i class="glyphicon glyphicon-chevron-right"></i> 按钮 &amp; 图标</a>
+                    <a href="#"><i class="glyphicon glyphicon-chevron-right"></i>会员查询</a><!-- stats.html -->
                 </li>
                 <li>
-                    <a href="wysiwyg-editors.jsp"><i class="glyphicon glyphicon-chevron-right"></i> HTML编辑器</a>
+                    <a href="forms.jsp"><i class="glyphicon glyphicon-chevron-right"></i> 客房查询</a>
                 </li>
                 <li>
-                    <a href="ui-and-interface.jsp"><i class="glyphicon glyphicon-chevron-right"></i> UI界面</a>
+                    <a href="#"><span class="badge pull-right">31</span> 订单</a>
                 </li>
                 <li>
-                    <a href="#"><span class="badge pull-right">731</span> 订单</a>
-                </li>
-                <li>
-                    <a href="#"><span class="badge pull-right">812</span> 清单</a>
-                </li>
-                <li>
-                    <a href="#"><span class="badge pull-right">27</span> 客户</a>
-                </li>
-                <li>
-                    <a href="#"><span class="badge pull-right">1,234</span> 用户</a>
-                </li>
-                <li>
-                    <a href="#"><span class="badge pull-right">2,221</span> 消息</a>
-                </li>
-                <li>
-                    <a href="#"><span class="badge pull-right">11</span> 报告</a>
-                </li>
-                <li>
-                    <a href="#"><span class="badge pull-right">83</span> 错误</a>
-                </li>
-                <li>
-                    <a href="#"><span class="badge pull-right">4,231</span> 日志</a>
+                    <a href="#"><span class="badge pull-right">812</span> 客户</a>
                 </li>
             </ul>
         </div>
@@ -158,79 +128,115 @@
                         <div class="text-muted bootstrap-admin-box-title">Form Example</div>
                     </div>
                     <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" action="<%=request.getContextPath()%>/vip/addVip"  method="post">
                             <fieldset>
                                 <legend>新增/修改会员</legend>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label" for="focusedInput">会员姓名</label>
                                     <div class="col-lg-10">
-                                        <input class="form-control" id="focusedInput" type="text" value="姓名">
+                                        <input class="form-control" id="focusedInput" name="vipName" type="text" value="姓名">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label" for="date01">会员生日</label>
                                     <div class="col-lg-10">
-                                        <input class="form-control datepicker" id="date01" value="19960930" type="text">
+                                        <input class="form-control datepicker" id="date01" name="vipBirthday" value="19960930" type="text">
                                         <p class="help-block">格式是19960930</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label">Uneditable input</label>
+                                    <label class="col-lg-2 control-label" for="phonenum">会员手机</label>
                                     <div class="col-lg-10">
-                                        <span class="form-control">Some value here</span>
+                                        <input class="form-control datepicker" id="phonenum" name="vipPhonenum" value="13012345678" type="text">
+                                        <p class="help-block">请输入11位数字</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label" for="disabledInput">Disabled input</label>
+                                    <label class="col-lg-2 control-label" for="uuid">身份证</label>
                                     <div class="col-lg-10">
-                                        <input class="form-control disabled" id="disabledInput" type="text" placeholder="Disabled input here..." disabled="">
+                                        <input class="form-control datepicker" id="uuid" name="uuid" value="360124197001011234" type="text">
+                                        <p class="help-block">请输入身份证号码</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label" for="optionsCheckbox2">Disabled checkbox</label>
+                                    <label class="col-lg-2 control-label" for="hobby">会员喜好</label>
                                     <div class="col-lg-10">
-                                        <label>
-                                            <input type="checkbox" id="optionsCheckbox2" value="option1" disabled="">
-                                            This is a disabled checkbox
-                                        </label>
+                                        <input class="form-control datepicker" id="hobby" name="vipHobby" value="会员喜好" type="text">
                                     </div>
                                 </div>
-                                <div class="form-group has-warning">
-                                    <label class="col-lg-2 control-label" for="inputError">Input with warning</label>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label" for="select01">会员等级※</label>
                                     <div class="col-lg-10">
-                                        <input type="text" id="inputWarning" class="form-control">
-                                        <span class="help-block">Something may have gone wrong</span>
-                                    </div>
-                                </div>
-                                <div class="form-group has-error">
-                                    <label class="col-lg-2 control-label" for="inputError">Input with error</label>
-                                    <div class="col-lg-10">
-                                        <input type="text" id="inputError" class="form-control">
-                                        <span class="help-block">Please correct the error</span>
-                                    </div>
-                                </div>
-                                <div class="form-group has-success">
-                                    <label class="col-lg-2 control-label" for="inputError">Input with success</label>
-                                    <div class="col-lg-10">
-                                        <input type="text" id="inputSuccess" class="form-control">
-                                        <span class="help-block">Woohoo!</span>
-                                    </div>
-                                </div>
-                                <div class="form-group has-success">
-                                    <label class="col-lg-2 control-label" for="selectError">Select with success</label>
-                                    <div class="col-lg-10">
-                                        <select id="selectError" class="form-control">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
+                                        <select id="select01" name="vipType" class="chzn-select" style="width: 150px">
+                                            <option value="0">请选择</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
                                         </select>
-                                        <span class="help-block">Woohoo!</span>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Save changes</button>
-                                <button type="reset" class="btn btn-default">Cancel</button>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label" for="times">入住次数</label>
+                                    <div class="col-lg-10">
+                                        <input class="form-control datepicker" id="times" name="times" value="1" type="text">
+                                        <p class="help-block">请输入入住次数</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label" for="power">消费能力</label>
+                                    <div class="col-lg-10">
+                                        <input class="form-control datepicker" id="power" name="spendingPower" value="120" type="text">
+                                        <p class="help-block">建议填此次入住房间价格</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label" for="remark">备注</label>
+                                    <div class="col-lg-10">
+                                        <input class="form-control datepicker" id="remark" name="remark" value="备注" type="text">
+                                        <p class="help-block">给客人备注一下吧</p>
+                                    </div>
+                                </div>
+                                <%--<input type="date" value="2015-09-24"/>--%>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label" for="createTime">创建时间</label>
+                                    <div class="col-lg-10">
+                                        <input class="form-control datepicker" id="createTime" name="vipCreateTime" value="2018/04/17" type="date">
+                                        <p class="help-block">给客人备注一下创建时间吧</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label" for="lastCreateTime">最后一次入住时间</label>
+                                    <div class="col-lg-10">
+                                        <input class="form-control datepicker" id="lastCreateTime" name="vipLastTime" value="2018/04/17" type="date">
+                                        <p class="help-block">给客人备注一下最后一次入住时间吧</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label" for="select03">会员状态</label>
+                                    <div class="col-lg-10">
+                                        <select id="select03" name="status" class="chzn-select" style="width: 150px">
+                                            <option value="0">请选择</option>
+                                            <option value="1">入住状态</option>
+                                            <option value="2">离店状态</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label" for="select02">是否有效会员</label>
+                                    <div class="col-lg-10">
+                                        <select id="select02" name="valid" class="chzn-select" style="width: 150px">
+                                            <option value="0">请选择</option>
+                                            <option value="1">有效</option>
+                                            <option value="2">无效</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">提交</button>
+                                <%--《之后实现》--%>
+                                <button type="reset" class="btn btn-default">清空</button>
                             </fieldset>
                         </form>
                     </div>

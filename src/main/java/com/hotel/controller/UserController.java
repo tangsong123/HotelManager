@@ -1,13 +1,14 @@
 package com.hotel.controller;
 
+import java.util.Date;
 import com.hotel.bean.User;
 import com.hotel.service.UserService;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -34,9 +35,11 @@ public class UserController {
             session.setAttribute("msg", "账号不匹配，请重新输入！");
             return null;
         }
-        ModelAndView view = new ModelAndView("index");
-
+        ModelAndView view = new ModelAndView("welcome");
+        Date date = new Date();
+        String d = String.valueOf(date.getTime());
         view.getModel().put("myuser", u);
+        view.getModel().put("datetime",d);
         return  view;
     }
 //    @RequestMapping("index")

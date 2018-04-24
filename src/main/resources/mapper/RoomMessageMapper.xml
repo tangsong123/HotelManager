@@ -34,11 +34,57 @@
     from hotel_room_message
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectAll" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from hotel_room_message
   </select>
+  <select id="selectRoomByPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from hotel_room_message
+    WHERE 1=1
+    limit #{index},#{pageSize}
+  </select>
+
+  <select id="selectByUnique" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from hotel_room_message
+    WHERE 1=1
+    <if test="roomType!=null">
+      and  room_type=#{roomType}
+    </if>
+    <if test="roomBedNum!=null">
+      and  room_bed_num=#{roomBedNum}
+    </if>
+    <if test="isTv!=null">
+      and  is_tv=#{isTv}
+    </if>
+    <if test="isWindow!=null">
+      and  is_window=#{isWindow}
+    </if>
+    <if test="isBreakfirst!=null">
+      and  is_breakfirst=#{isBreakfirst}
+    </if>
+    <if test="isBathroom!=null">
+      and  is_bathroom=#{isBathroom}
+    </if>
+    <if test="isBlower!=null">
+      and  is_blower=#{isBlower}
+    </if>
+    <if test="status!=null">
+      and  status=#{status}
+    </if>
+    and valid=1
+  </select>
+
+  <select id="selectCount" resultType="java.lang.Integer">
+    select
+    COUNT(id)
+    from hotel_room_message
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from hotel_room_message
     where id = #{id,jdbcType=BIGINT}

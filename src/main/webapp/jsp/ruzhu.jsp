@@ -86,144 +86,49 @@
         <div class="container">
             <!-- left, vertical navbar & content -->
             <div class="row">
-                <!-- left, vertical navbar -->
-                <div class="col-md-2 bootstrap-admin-col-left">
-                    <ul class="nav navbar-collapse collapse bootstrap-admin-navbar-side">
-                         <li >
-                            <a href="index.jsp"><i class="glyphicon glyphicon-chevron-right"></i> 首页</a>
-                        </li>
-						<li >
-                            <a href="about.jsp"><i class="glyphicon glyphicon-chevron-right"></i> 关于我们</a>
-                        </li>                       
-                        <li class="disabled">
-                            <a href="#"><i class="glyphicon glyphicon-chevron-right"></i> 日历</a><!-- calendar.html -->
-                        </li>
-                        <li class="disabled">
-                            <a href="#"><i class="glyphicon glyphicon-chevron-right"></i> 统计图表</a><!-- stats.html -->
-                        </li>
-                        <li class="active">
-                            <a href="forms.jsp"><i class="glyphicon glyphicon-chevron-right"></i> 表单</a>
-                        </li>
-                        <li >
-                            <a href="tables.jsp"><i class="glyphicon glyphicon-chevron-right"></i> 数据表格</a>
-                        </li>
-                        <li >
-                            <a href="buttons-and-icons.jsp"><i class="glyphicon glyphicon-chevron-right"></i> 按钮 &amp; 图标</a>
-                        </li>
-                        <li>
-                            <a href="wysiwyg-editors.jsp"><i class="glyphicon glyphicon-chevron-right"></i> HTML编辑器</a>
-                        </li>
-                        <li>
-                            <a href="ui-and-interface.jsp"><i class="glyphicon glyphicon-chevron-right"></i> UI界面</a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="badge pull-right">731</span> 订单</a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="badge pull-right">812</span> 清单</a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="badge pull-right">27</span> 客户</a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="badge pull-right">1,234</span> 用户</a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="badge pull-right">2,221</span> 消息</a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="badge pull-right">11</span> 报告</a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="badge pull-right">83</span> 错误</a>
-                        </li>
-                        <li>
-                            <a href="#"><span class="badge pull-right">4,231</span> 日志</a>
-                        </li>
-                    </ul>
-                </div>
-
                 <!-- content -->
                 <div class="col-md-10">
                     <div class="row">
                         <div class="panel panel-default bootstrap-admin-no-table-panel">
                             <div class="panel-heading">
-                                <div class="text-muted bootstrap-admin-box-title">Form Example</div>
+                                <div class="text-muted bootstrap-admin-box-title">散客入住（入住即生成一个订单）</div>
                             </div>
                             <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
                                 <form class="form-horizontal">
                                     <fieldset>
-                                        <legend>Form Horizontal</legend>
+                                        <legend>入住</legend>
                                         <div class="form-group">
-                                            <label class="col-lg-2 control-label" for="focusedInput">Focused input</label>
+                                            <label class="col-lg-2 control-label" for="vipName">会员名字</label>
                                             <div class="col-lg-10">
-                                                <input class="form-control" id="focusedInput" type="text" value="This is focused...">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-2 control-label" for="date01">Date input</label>
-                                            <div class="col-lg-10">
-                                                <input class="form-control datepicker" id="date01" value="02/16/12" type="text">
-                                                <p class="help-block">In addition to freeform text, any HTML5 text-based input appears like so.</p>
+                                                <input class="form-control" id="vipName" type="text" value="会员名字...">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-lg-2 control-label">Uneditable input</label>
+                                            <label class="col-lg-2 control-label" for="vipType">会员类型</label>
                                             <div class="col-lg-10">
-                                                <span class="form-control">Some value here</span>
+                                                <input class="form-control" id="vipType" type="text" value="会员类型...">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-lg-2 control-label" for="disabledInput">Disabled input</label>
+                                            <label class="col-lg-2 control-label" for="username">管理员名字</label>
                                             <div class="col-lg-10">
-                                                <input class="form-control disabled" id="disabledInput" type="text" placeholder="Disabled input here..." disabled="">
+                                                <input class="form-control" id="username" type="text" value="管理员名字...">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-lg-2 control-label" for="optionsCheckbox2">Disabled checkbox</label>
+                                            <label class="col-lg-2 control-label" for="valid">金额</label>
                                             <div class="col-lg-10">
-                                                <label>
-                                                    <input type="checkbox" id="optionsCheckbox2" value="option1" disabled="">
-                                                    This is a disabled checkbox
-                                                </label>
+                                                <input class="form-control" id="valid" type="text" value="金额...">
                                             </div>
                                         </div>
-                                        <div class="form-group has-warning">
-                                            <label class="col-lg-2 control-label" for="inputError">Input with warning</label>
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label" for="remake">房间名</label>
                                             <div class="col-lg-10">
-                                                <input type="text" id="inputWarning" class="form-control">
-                                                <span class="help-block">Something may have gone wrong</span>
+                                                <input class="form-control" id="remake" type="text" value="房间名...">
                                             </div>
                                         </div>
-                                        <div class="form-group has-error">
-                                            <label class="col-lg-2 control-label" for="inputError">Input with error</label>
-                                            <div class="col-lg-10">
-                                                <input type="text" id="inputError" class="form-control">
-                                                <span class="help-block">Please correct the error</span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group has-success">
-                                            <label class="col-lg-2 control-label" for="inputError">Input with success</label>
-                                            <div class="col-lg-10">
-                                                <input type="text" id="inputSuccess" class="form-control">
-                                                <span class="help-block">Woohoo!</span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group has-success">
-                                            <label class="col-lg-2 control-label" for="selectError">Select with success</label>
-                                            <div class="col-lg-10">
-                                                <select id="selectError" class="form-control">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                </select>
-                                                <span class="help-block">Woohoo!</span>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
-                                        <button type="reset" class="btn btn-default">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">保存</button>
+                                        <button type="reset" class="btn btn-default">返回</button>
                                     </fieldset>
                                 </form>
                             </div>
@@ -233,12 +138,7 @@
                 </div>
             </div>
 
-            <div class="row">
-                <hr>
-                <footer role="contentinfo">
-                    <p>&copy; 2013 <a href="#" target="_blank">Boot3Admin</a>-More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
-                </footer>
-            </div>
+
         </div>
 
         <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
