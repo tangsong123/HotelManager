@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hotel.dao.OrderMessageMapper" >
+  <resultMap id="BaseResultMap" type="com.hotel.bean.OrderMessage" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="vip_name" property="vipName" jdbcType="VARCHAR" />
+    <result column="admin_name" property="adminName" jdbcType="VARCHAR" />
+    <result column="vip_type" property="vipType" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="room_id" property="roomId" jdbcType="BIGINT" />
+    <result column="room_name" property="roomName" jdbcType="VARCHAR" />
+    <result column="valid" property="valid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="is_invoice" property="isInvoice" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="order_create_time" property="orderCreateTime" jdbcType="TIMESTAMP" />
+    <result column="order_complete_time" property="orderCompleteTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uuid, vip_name, admin_name, vip_type, price, room_id, room_name, valid, status, 
+    is_invoice, remark, order_create_time, order_complete_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_message
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectCountNoNull" resultType="java.lang.Integer">
+    select
+    COUNT(id)
+    from order_message
+    where  order_complete_time is not NULL ;
+  </select>
+  <select id="selectCountByStatus" resultType="java.lang.Integer">
+    select
+    COUNT(id)
+    from order_message
+    where  status = 1
+    and valid = 1
+  </select>
+  <select id="selectOrderByPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from order_message
+    WHERE order_complete_time is not NULL
+    AND  status = 2
+    order BY order_create_time DESC
+    limit #{index},#{pageSize}
+  </select>
+  <select id="selectOrderByStatusPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from order_message
+    WHERE 1=1
+    AND  status = 1
+    order BY order_create_time DESC
+    limit #{index},#{pageSize}
+  </select>
+  <select id="seletOrderByTime" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM order_message
+    where  DATE(order_complete_time) = #{data}
+    limit #{index},#{pageSize}
+  </select>
+  <select id="seletMouthCount" resultType="java.lang.Integer">
+    SELECT
+		count(id)
+    FROM order_message
+    where  year(order_complete_time) = #{year} and month(order_complete_time) = #{mouth} AND DAY(order_complete_time)=#{day}
+		order by  order_complete_time desc
+  </select>
+  <select id="selectMouthByPage" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM order_message
+    where  year(order_complete_time) = #{year} and month(order_complete_time) = #{mouth} AND DAY(order_complete_time)=#{day}
+		order by  order_complete_time desc
+  </select>
+  <select id="selectCountBycondition" resultType="java.lang.Integer">
+    select
+    COUNT(id)
+    from order_message
+    where  DATE(order_complete_time) = #{data}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from order_message
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hotel.bean.OrderMessage" >
+    insert into order_message (id, uuid, vip_name, 
+      admin_name, vip_type, price, 
+      room_id, room_name, valid, 
+      status, is_invoice, remark, 
+      order_create_time, order_complete_time)
+    values (#{id,jdbcType=BIGINT}, #{uuid,jdbcType=VARCHAR}, #{vipName,jdbcType=VARCHAR}, 
+      #{adminName,jdbcType=VARCHAR}, #{vipType,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, 
+      #{roomId,jdbcType=BIGINT}, #{roomName,jdbcType=VARCHAR}, #{valid,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{isInvoice,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{orderCreateTime,jdbcType=TIMESTAMP}, #{orderCompleteTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hotel.bean.OrderMessage" >
+    insert into order_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="vipName != null" >
+        vip_name,
+      </if>
+      <if test="adminName != null" >
+        admin_name,
+      </if>
+      <if test="vipType != null" >
+        vip_type,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="roomId != null" >
+        room_id,
+      </if>
+      <if test="roomName != null" >
+        room_name,
+      </if>
+      <if test="valid != null" >
+        valid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="isInvoice != null" >
+        is_invoice,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="orderCreateTime != null" >
+        order_create_time,
+      </if>
+      <if test="orderCompleteTime != null" >
+        order_complete_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="vipName != null" >
+        #{vipName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminName != null" >
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="vipType != null" >
+        #{vipType,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="roomId != null" >
+        #{roomId,jdbcType=BIGINT},
+      </if>
+      <if test="roomName != null" >
+        #{roomName,jdbcType=VARCHAR},
+      </if>
+      <if test="valid != null" >
+        #{valid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isInvoice != null" >
+        #{isInvoice,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCreateTime != null" >
+        #{orderCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderCompleteTime != null" >
+        #{orderCompleteTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hotel.bean.OrderMessage" >
+    update order_message
+    <set >
+      <if test="uuid != null" >
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="vipName != null" >
+        vip_name = #{vipName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminName != null" >
+        admin_name = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="vipType != null" >
+        vip_type = #{vipType,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="roomId != null" >
+        room_id = #{roomId,jdbcType=BIGINT},
+      </if>
+      <if test="roomName != null" >
+        room_name = #{roomName,jdbcType=VARCHAR},
+      </if>
+      <if test="valid != null" >
+        valid = #{valid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isInvoice != null" >
+        is_invoice = #{isInvoice,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCreateTime != null" >
+        order_create_time = #{orderCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderCompleteTime != null" >
+        order_complete_time = #{orderCompleteTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hotel.bean.OrderMessage" >
+    update order_message
+    set uuid = #{uuid,jdbcType=VARCHAR},
+      vip_name = #{vipName,jdbcType=VARCHAR},
+      admin_name = #{adminName,jdbcType=VARCHAR},
+      vip_type = #{vipType,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      room_id = #{roomId,jdbcType=BIGINT},
+      room_name = #{roomName,jdbcType=VARCHAR},
+      valid = #{valid,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      is_invoice = #{isInvoice,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      order_create_time = #{orderCreateTime,jdbcType=TIMESTAMP},
+      order_complete_time = #{orderCompleteTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
