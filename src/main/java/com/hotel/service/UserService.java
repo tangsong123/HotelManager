@@ -15,4 +15,7 @@ public class UserService{
     public User selectByUsername(String username) {
         return userMapper.selectByUsername(username);
     }
+    public int updateByUserName(User record){
+        return userMapper.updateByUserName(record);
+    }
 }

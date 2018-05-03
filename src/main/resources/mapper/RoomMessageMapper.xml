@@ -76,7 +76,6 @@
     <if test="status!=null">
       and  status=#{status}
     </if>
-    and valid=1
   </select>
 
   <select id="selectCount" resultType="java.lang.Integer">

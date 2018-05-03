@@ -14,6 +14,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap -->
+    <%--<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">--%>
+    <%--<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>--%>
+    <%--<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--%>
+
     <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="<%=request.getContextPath()%>/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
 
@@ -21,18 +25,22 @@
     <link href="<%=request.getContextPath()%>/css/bootstrap-admin-theme.css" rel="stylesheet" media="screen">
 
     <!-- Vendors -->
-    <link href="<%=request.getContextPath()%>/vendors/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" media="screen">
-    <link href="<%=request.getContextPath()%>/css/datepicker.fixes.css" rel="stylesheet" media="screen">
-    <link href="<%=request.getContextPath()%>/vendors/uniform/themes/default/css/uniform.default.min.css" rel="stylesheet" media="screen">
-    <link href="<%=request.getContextPath()%>/css/uniform.default.fixes.css" rel="stylesheet" media="screen">
-    <link href="<%=request.getContextPath()%>/vendors/chosen.min.css" rel="stylesheet" media="screen">
-    <link href="<%=request.getContextPath()%>/vendors/bootstrap-wysihtml5-rails-b3/vendor/assets/stylesheets/bootstrap-wysihtml5/core-b3.css" rel="stylesheet" media="screen">
+    <link href="<%=request.getContextPath()%>/vendors/easypiechart/jquery.easy-pie-chart.css" rel="stylesheet" media="screen">
+    <link href="<%=request.getContextPath()%>/vendors/easypiechart/jquery.easy-pie-chart_custom.css" rel="stylesheet" media="screen">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/html5shiv.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/respond.min.js"></script>
     <![endif]-->
+    <script>
+        function loginOut() {
+            var result = confirm("你确定要退出登陆吗？");
+            if(result == true){
+                location.replace("<%=request.getContextPath()%>/hello/loginOut"); //loginOut即是你所要转的退出登录的地址
+            }
+        }
+    </script>
 </head>
 <body class="bootstrap-admin-with-small-navbar">
 <nav class="navbar navbar-default navbar-inverse navbar-fixed-top " role="navigation">
@@ -51,37 +59,28 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">首页</a></li>
-                    <li ><a href="#">关于我们</a></li>
+                    <li class="active"><a href="<%=request.getContextPath()%>/hello/index">首页</a></li>
+                    <li ><a href="<%=request.getContextPath()%>/hello/about">关于我们</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">下拉菜单<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
+                            <li><a href="<%=request.getContextPath()%>/order/addOrder">入住</a></li>
+                            <li><a href="<%=request.getContextPath()%>/order/updateOrder">结账</a></li>
                             <li class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
+                            <li><a href="<%=request.getContextPath()%>/vip/vipList">会员管理</a></li>
+                            <li><a href="<%=request.getContextPath()%>/room/rooms">客房管理</a></li>
+                            <li><a href="<%=request.getContextPath()%>/order/orders">订单管理</a></li>
                         </ul>
                     </li>
                 </ul>
-                <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="请输入内容">
-                    </div>
-                    <button type="submit" class="btn btn-default">搜索</button>
-                </form>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">链接</a></li>
+                    <li><a href="http://www.baidu.com">链接</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">管理员<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">设置</a></li>
-                            <li><a href="#">个人资料</a></li>
-                            <li><a href="#">账户中心</a></li>
+                            <li><a href="<%=request.getContextPath()%>/hello/update">修改密码</a></li>
                             <li class="divider"></li>
-                            <li><a href="#">退出登录</a></li>
+                            <li><a href="javascript:loginOut();">退出登录</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -100,22 +99,22 @@
                     <a href="index.jsp"><i class="glyphicon glyphicon-chevron-right"></i> 首页</a>
                 </li>
                 <li >
-                    <a href="about.jsp"><i class="glyphicon glyphicon-chevron-right"></i> 关于我们</a>
+                    <a href="<%=request.getContextPath()%>/hello/about"><i class="glyphicon glyphicon-chevron-right"></i> 关于我们</a>
                 </li>
                 <li >
-                    <a href="#"><i class="glyphicon glyphicon-chevron-right"></i> 节假日</a><!-- calendar.html -->
+                    <a href="<%=request.getContextPath()%>/hello/rili"><i class="glyphicon glyphicon-chevron-right"></i> 节假日</a><!-- calendar.html -->
                 </li>
                 <li >
-                    <a href="#"><i class="glyphicon glyphicon-chevron-right"></i>会员查询</a><!-- stats.html -->
+                    <a href="<%=request.getContextPath()%>/vip/vipList"><i class="glyphicon glyphicon-chevron-right"></i>会员查询</a><!-- stats.html -->
                 </li>
                 <li>
-                    <a href="forms.jsp"><i class="glyphicon glyphicon-chevron-right"></i> 客房查询</a>
+                    <a href="<%=request.getContextPath()%>/room/rooms"><i class="glyphicon glyphicon-chevron-right"></i> 客房查询</a>
                 </li>
-                <li>
-                    <a href="#"><span class="badge pull-right">31</span> 订单</a>
+                <li >
+                    <a href="<%=request.getContextPath()%>/order/orders"><span class="badge pull-right">31</span> 今日订单</a>
                 </li>
-                <li>
-                    <a href="#"><span class="badge pull-right">812</span> 客户</a>
+                <li class="disabled">
+                    <a href="#"><span class="badge pull-right">812</span>所有客户</a>
                 </li>
             </ul>
         </div>
@@ -134,78 +133,74 @@
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label" for="focusedInput">会员姓名</label>
                                     <div class="col-lg-10">
-                                        <input class="form-control" id="focusedInput" name="vipName" type="text" value="姓名">
+                                        <input class="form-control" id="focusedInput" name="vipName" type="text" >
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label" for="date01">会员生日</label>
                                     <div class="col-lg-10">
-                                        <input class="form-control datepicker" id="date01" name="vipBirthday" value="19960930" type="text">
-                                        <p class="help-block">格式是19960930</p>
+                                        <input class="form-control datepicker" id="date01" name="vipBirthday" type="text">
+                                        <p class="help-block">e.g.19960930</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label" for="phonenum">会员手机</label>
                                     <div class="col-lg-10">
-                                        <input class="form-control datepicker" id="phonenum" name="vipPhonenum" value="13012345678" type="text">
+                                        <input class="form-control datepicker" id="phonenum" name="vipPhonenum"  type="text">
                                         <p class="help-block">请输入11位数字</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label" for="uuid">身份证</label>
                                     <div class="col-lg-10">
-                                        <input class="form-control datepicker" id="uuid" name="uuid" value="360124197001011234" type="text">
-                                        <p class="help-block">请输入身份证号码</p>
+                                        <input class="form-control datepicker" id="uuid" name="uuid"  type="text">
+                                        <p class="help-block">e.g.360124197001011234</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label" for="hobby">会员喜好</label>
                                     <div class="col-lg-10">
-                                        <input class="form-control datepicker" id="hobby" name="vipHobby" value="会员喜好" type="text">
+                                        <input class="form-control datepicker" id="hobby" name="vipHobby"  type="text">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label" for="select01">会员等级※</label>
+                                    <label class="col-lg-2 control-label" for="select01">会员类型※</label>
                                     <div class="col-lg-10">
                                         <select id="select01" name="vipType" class="chzn-select" style="width: 150px">
                                             <option value="0">请选择</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
+                                            <option value="1">普通会员</option>
+                                            <option value="2">黄金会员</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label" for="times">入住次数</label>
                                     <div class="col-lg-10">
-                                        <input class="form-control datepicker" id="times" name="times" value="1" type="text">
+                                        <input class="form-control datepicker" id="times" name="times" type="text">
                                         <p class="help-block">请输入入住次数</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label" for="power">消费能力</label>
                                     <div class="col-lg-10">
-                                        <input class="form-control datepicker" id="power" name="spendingPower" value="120" type="text">
+                                        <input class="form-control datepicker" id="power" name="spendingPower"  type="text">
                                         <p class="help-block">建议填此次入住房间价格</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label" for="remark">备注</label>
                                     <div class="col-lg-10">
-                                        <input class="form-control datepicker" id="remark" name="remark" value="备注" type="text">
+                                        <input class="form-control datepicker" id="remark" name="remark" type="text">
                                         <p class="help-block">给客人备注一下吧</p>
                                     </div>
                                 </div>
                                 <%--<input type="date" value="2015-09-24"/>--%>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label" for="createTime">创建时间</label>
-                                    <div class="col-lg-10">
-                                        <input class="form-control datepicker" id="createTime" name="vipCreateTime" value="2018/04/17" type="date">
-                                        <p class="help-block">给客人备注一下创建时间吧</p>
-                                    </div>
+                                        <div class="col-lg-10">
+                                            <input class="form-control datepicker" id="createTime" name="vipCreateTime" value="2018/04/17" type="date">
+                                            <p class="help-block">给客人备注一下创建时间吧</p>
+                                        </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label" for="lastCreateTime">最后一次入住时间</label>
@@ -219,8 +214,10 @@
                                     <div class="col-lg-10">
                                         <select id="select03" name="status" class="chzn-select" style="width: 150px">
                                             <option value="0">请选择</option>
-                                            <option value="1">入住状态</option>
-                                            <option value="2">离店状态</option>
+                                            <option value="1">首次入住</option>
+                                            <option value="2">有价值用户</option>
+                                            <option value="3">可挽留用户</option>
+                                            <option value="4">活跃用户</option>
                                         </select>
                                     </div>
                                 </div>
@@ -254,16 +251,12 @@
     </div>
 </div>
 
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/twitter-bootstrap-hover-dropdown.min.js"></script>
-<script type="text/javascript" src="vendors/uniform/jquery.uniform.min.js"></script>
-<script type="text/javascript" src="vendors/chosen.jquery.min.js"></script>
-<script type="text/javascript" src="vendors/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="vendors/bootstrap-wysihtml5-rails-b3/vendor/assets/javascripts/bootstrap-wysihtml5/wysihtml5.js"></script>
-<script type="text/javascript" src="vendors/bootstrap-wysihtml5-rails-b3/vendor/assets/javascripts/bootstrap-wysihtml5/core-b3.js"></script>
-<script type="text/javascript" src="vendors/twitter-bootstrap-wizard/jquery.bootstrap.wizard-for.bootstrap3.js"></script>
-<script type="text/javascript" src="vendors/boostrap3-typeahead/bootstrap3-typeahead.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/twitter-bootstrap-hover-dropdown.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/vendors/easypiechart/jquery.easy-pie-chart.js"></script>
 
 <script type="text/javascript">
     $(function() {

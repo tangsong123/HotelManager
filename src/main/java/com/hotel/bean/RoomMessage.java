@@ -40,14 +40,14 @@ public class RoomMessage {
 
     private String remark;
 
-    private Date roomCreateTime;
+    private String roomCreateTime;
 
-    private Date roomLastTime;
+    private String roomLastTime;
 
     public RoomMessage() {
     }
 
-    public RoomMessage(Long id, Long roomId, String roomName, Integer roomType, Long roomFloat, Long roomBedNum, String isTv, String isWindow, String isBreakfirst, String isBathroom, String isBlower, BigDecimal price, BigDecimal proprice, String uuid, Integer status, Integer valid, String url, String remark, Date roomCreateTime, Date roomLastTime) {
+    public RoomMessage(Long id, Long roomId, String roomName, Integer roomType, Long roomFloat, Long roomBedNum, String isTv, String isWindow, String isBreakfirst, String isBathroom, String isBlower, BigDecimal price, BigDecimal proprice, String uuid, Integer status, Integer valid, String url, String remark, String roomCreateTime, String roomLastTime) {
         this.id = id;
         this.roomId = roomId;
         this.roomName = roomName;
@@ -214,19 +214,19 @@ public class RoomMessage {
         this.remark = remark == null ? null : remark.trim();
     }
 
-    public Date getRoomCreateTime() {
+    public String getRoomCreateTime() {
         return roomCreateTime;
     }
 
-    public void setRoomCreateTime(Date roomCreateTime) {
+    public void setRoomCreateTime(String roomCreateTime) {
         this.roomCreateTime = roomCreateTime;
     }
 
-    public Date getRoomLastTime() {
+    public String getRoomLastTime() {
         return roomLastTime;
     }
 
-    public void setRoomLastTime(Date roomLastTime) {
+    public void setRoomLastTime(String roomLastTime) {
         this.roomLastTime = roomLastTime;
     }
 }

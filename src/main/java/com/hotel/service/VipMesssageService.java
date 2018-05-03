@@ -34,9 +34,9 @@ public class VipMesssageService{
     public Integer selectCount(){
         return vipMessageMapper.selectCount();
     }
-    public List<VipMessage> selectVipByCondition(MapBean mapBean){
+    public List<VipMessage> selectVipByCondition(VipMessage vipMessage){
 
-        return vipMessageMapper.selectVipByCondition(mapBean);
+        return vipMessageMapper.selectVipByCondition(vipMessage);
     }
     public Integer selectVipCountByCondition(VipMessage vipMessage){
         return vipMessageMapper.selectVipCountByCondition(vipMessage);

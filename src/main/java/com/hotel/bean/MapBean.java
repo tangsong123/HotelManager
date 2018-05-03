@@ -7,20 +7,19 @@ public class MapBean {
     private Long spendingPower;
     private Integer status;
     private Integer valid;
-    private int index;
-    private Integer pageSize;
+//    private int index;
+//    private Integer pageSize;
 
     public MapBean() {
     }
 
-    public MapBean(String vipName, Integer vipType, Long spendingPower, Integer status, Integer valid, int index, Integer pageSize) {
+    public MapBean(String vipName, Integer vipType, Long spendingPower, Integer status, Integer valid) {
         this.vipName = vipName;
         this.vipType = vipType;
         this.spendingPower = spendingPower;
         this.status = status;
         this.valid = valid;
-        this.index = index;
-        this.pageSize = pageSize;
+
     }
 
     public String getVipName() {
@@ -63,19 +62,4 @@ public class MapBean {
         this.valid = valid;
     }
 
-    public int getIndex() {
-        return index;
-    }
-
-    public void setIndex(int index) {
-        this.index = index;
-    }
-
-    public Integer getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(Integer pageSize) {
-        this.pageSize = pageSize;
-    }
 }

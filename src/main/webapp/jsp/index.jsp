@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
 <%-- 拦截器--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,7 +7,7 @@
 
 <html>
     <head>
-        <title>首页_Bootstrap3响应式后台主题模板Boot3Admin - cssmoban</title>
+        <title>首页</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -30,6 +31,14 @@
            <script type="text/javascript" src="<%=request.getContextPath()%>/js/html5shiv.js"></script>
            <script type="text/javascript" src="<%=request.getContextPath()%>/js/respond.min.js"></script>
         <![endif]-->
+        <script>
+            function loginOut() {
+                var result = confirm("你确定要退出登陆吗？");
+                if(result == true){
+                    location.replace("<%=request.getContextPath()%>/hello/loginOut"); //loginOut即是你所要转的退出登录的地址
+                }
+            }
+        </script>
     </head>
     <body class="bootstrap-admin-with-small-navbar">
     <nav class="navbar navbar-default navbar-inverse navbar-fixed-top " role="navigation">
@@ -53,29 +62,21 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">下拉菜单<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="<%=request.getContextPath()%>/room/roomList">入住</a></li>
-                                <li><a href="<%=request.getContextPath()%>/room/roomList">结账</a></li>
+                                <li><a href="<%=request.getContextPath()%>/order/addOrder">入住</a></li>
+                                <li><a href="<%=request.getContextPath()%>/order/updateOrder">结账</a></li>
                                 <li class="divider"></li>
-                                <li><a href="<%=request.getContextPath()%>/room/roomList">会员管理</a></li>
-                                <li><a href="<%=request.getContextPath()%>/room/roomList">客房管理</a></li>
+                                <li><a href="<%=request.getContextPath()%>/vip/vipList">会员管理</a></li>
+                                <li><a href="<%=request.getContextPath()%>/room/rooms">客房管理</a></li>
+                                <li><a href="<%=request.getContextPath()%>/order/orders">订单管理</a></li>
                             </ul>
                         </li>
                     </ul>
-                    <%--导航的搜索--%>
-                    <%--<form class="navbar-form navbar-left" role="search">--%>
-                    <%--<div class="form-group">--%>
-                    <%--<input type="text" class="form-control" placeholder="请输入内容">--%>
-                    <%--</div>--%>
-                    <%--<button type="submit" class="btn btn-default">搜索</button>--%>
-                    <%--</form>--%>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="http://www.baidu.com">链接</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">管理员<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="<%=request.getContextPath()%>/hello/login">设置</a></li>
-                                <li><a href="<%=request.getContextPath()%>/hello/login">个人资料</a></li>
-                                <li><a href="<%=request.getContextPath()%>/hello/login">账户中心</a></li>
+                                <li><a href="<%=request.getContextPath()%>/hello/update">修改密码</a></li>
                                 <li class="divider"></li>
                                 <li><a href="javascript:loginOut();">退出登录</a></li>
                             </ul>
@@ -86,41 +87,6 @@
         </div>
     </nav>
 
-
-        <%--轮播图--%>
-    <%--<div class="container">
-        <div id="myCarousel" class="carousel slide" >
-            <!-- 轮播（Carousel）指标 -->
-            <ol class="carousel-indicators" >
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
-            <!-- 轮播（Carousel）项目 -->
-            <div class="carousel-inner">
-                <div class="item active">
-                    <img src="/wp-content/uploads/2014/07/slide1.png" alt="First slide">
-                </div>
-                <div class="item">
-                    <img src="/wp-content/uploads/2014/07/slide2.png" alt="Second slide">
-                </div>
-                <div class="item">
-                    <img src="/wp-content/uploads/2014/07/slide3.png" alt="Third slide">
-                </div>
-            </div>
-            <!-- 轮播（Carousel）导航 -->
-            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>
-    <br>--%>
-        <%--轮播图--%>
         <div class="container">
        <!-- left, vertical navbar & content -->
        <div class="row">
@@ -131,22 +97,22 @@
                        <a href="index.jsp"><i class="glyphicon glyphicon-chevron-right"></i> 首页</a>
                    </li>
                    <li >
-                       <a href="about.jsp"><i class="glyphicon glyphicon-chevron-right"></i> 关于我们</a>
+                       <a href="<%=request.getContextPath()%>/hello/about"><i class="glyphicon glyphicon-chevron-right"></i> 关于我们</a>
                    </li>
                    <li >
-                       <a href="#"><i class="glyphicon glyphicon-chevron-right"></i> 节假日</a><!-- calendar.html -->
+                       <a href="<%=request.getContextPath()%>/hello/rili"><i class="glyphicon glyphicon-chevron-right"></i> 节假日</a><!-- calendar.html -->
                    </li>
                    <li >
-                       <a href="#"><i class="glyphicon glyphicon-chevron-right"></i>会员查询</a><!-- stats.html -->
+                       <a href="<%=request.getContextPath()%>/vip/vipList"><i class="glyphicon glyphicon-chevron-right"></i>会员查询</a><!-- stats.html -->
                    </li>
                    <li>
-                       <a href="forms.jsp"><i class="glyphicon glyphicon-chevron-right"></i> 客房查询</a>
+                       <a href="<%=request.getContextPath()%>/room/rooms"><i class="glyphicon glyphicon-chevron-right"></i> 客房查询</a>
                    </li>
-                   <li>
-                       <a href="#"><span class="badge pull-right">31</span> 订单</a>
+                   <li >
+                       <a href="<%=request.getContextPath()%>/order/orders"><span class="badge pull-right">31</span> 今日订单</a>
                    </li>
-                   <li>
-                       <a href="#"><span class="badge pull-right">812</span> 客户</a>
+                   <li class="disabled">
+                       <a href="#"><span class="badge pull-right">812</span>所有客户</a>
                    </li>
                </ul>
            </div>
@@ -155,6 +121,14 @@
            <div class="col-md-10">
                <div class="row">
                    <div class="panel panel-default bootstrap-admin-no-table-panel">
+                       <c:if test="${result.message!=null}">
+                           <div class="row">
+                               <div class="alert alert-success bootstrap-admin-alert">
+                                   <button type="button" class="close" data-dismiss="alert">×</button>
+                                   <h5>${result.message}</h5>
+                               </div>
+                           </div>
+                       </c:if>
                        <div class="panel-heading">
                            <div class="text-muted bootstrap-admin-box-title">统计</div>
                            <div class="pull-right"><span class="badge">&nbsp;</span></div>
@@ -188,51 +162,51 @@
                        <div class="bootstrap-admin-panel-content">
                            <div class="row bootstrap-admin-light-padding-bottom">
                                <div class="col-md-4">
-                                   <a href="#" class="thumbnail">
+                                   <a href="http://www.mafengwo.cn/travel-scenic-spot/mafengwo/10466.html" class="thumbnail">
                                        <img data-src="holder.js/260x180" alt="260x180" style="width: 260px; height: 180px;" src="<%=request.getContextPath()%>/images/inbj01.jpg">
                                    </a>
                                </div>
                                <div class="col-md-4">
-                                   <a href="#" class="thumbnail">
+                                   <a href="http://www.mafengwo.cn/travel-scenic-spot/mafengwo/10466.html" class="thumbnail">
                                        <img data-src="holder.js/260x180" alt="260x180" style="width: 260px; height: 180px;" src="<%=request.getContextPath()%>/images/inbj02.jpg">
                                    </a>
                                </div>
                                <div class="col-md-4">
-                                   <a href="#" class="thumbnail">
+                                   <a href="http://www.mafengwo.cn/travel-scenic-spot/mafengwo/10466.html" class="thumbnail">
                                        <img data-src="holder.js/260x180" alt="260x180" style="width: 260px; height: 180px;" src="<%=request.getContextPath()%>/images/inbj03.jpg">
                                    </a>
                                </div>
                            </div>
                            <div class="row bootstrap-admin-light-padding-bottom">
                                <div class="col-md-4">
-                                   <a href="#" class="thumbnail">
+                                   <a href="http://www.mafengwo.cn/travel-scenic-spot/mafengwo/10466.html" class="thumbnail">
                                        <img data-src="holder.js/260x180" alt="260x180" style="width: 260px; height: 180px;" src="<%=request.getContextPath()%>/images/inbj04.jpg">
                                    </a>
                                </div>
                                <div class="col-md-4">
-                                   <a href="#" class="thumbnail">
+                                   <a href="http://www.mafengwo.cn/travel-scenic-spot/mafengwo/10466.html" class="thumbnail">
                                        <img data-src="holder.js/260x180" alt="260x180" style="width: 260px; height: 180px;" src="<%=request.getContextPath()%>/images/inbj05.jpg">
                                    </a>
                                </div>
                                <div class="col-md-4">
-                                   <a href="#" class="thumbnail">
+                                   <a href="http://www.mafengwo.cn/travel-scenic-spot/mafengwo/10466.html" class="thumbnail">
                                        <img data-src="holder.js/260x180" alt="260x180" style="width: 260px; height: 180px;" src="<%=request.getContextPath()%>/images/inbj06.jpg">
                                    </a>
                                </div>
                            </div>
                            <div class="row">
                                <div class="col-md-4">
-                                   <a href="#" class="thumbnail">
+                                   <a href="http://www.mafengwo.cn/travel-scenic-spot/mafengwo/10466.html" class="thumbnail">
                                        <img data-src="holder.js/260x180" alt="260x180" style="width: 260px; height: 180px;" src="<%=request.getContextPath()%>/images/inbj07.jpg">
                                    </a>
                                </div>
                                <div class="col-md-4">
-                                   <a href="#" class="thumbnail">
+                                   <a href="http://www.mafengwo.cn/travel-scenic-spot/mafengwo/10466.html" class="thumbnail">
                                        <img data-src="holder.js/260x180" alt="260x180" style="width: 260px; height: 180px;" src="<%=request.getContextPath()%>/images/inbj08.jpg">
                                    </a>
                                </div>
                                <div class="col-md-4">
-                                   <a href="#" class="thumbnail">
+                                   <a href="http://www.mafengwo.cn/travel-scenic-spot/mafengwo/10466.html" class="thumbnail">
                                        <img data-src="holder.js/260x180" alt="260x180" style="width: 260px; height: 180px;" src="<%=request.getContextPath()%>/images/inbj09.jpg">
                                    </a>
                                </div>
@@ -242,18 +216,10 @@
                </div>
            </div>
        </div>
-
-       <div class="row">
-           <hr>
-           <footer role="contentinfo">
-               <p>&copy; 2013 <a href="#" target="_blank">Boot3Admin</a>-More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
-           </footer>
-       </div>
    </div>
 
-   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="<%=request.getContextPath()%>/js/twitter-bootstrap-hover-dropdown.min.js"></script>

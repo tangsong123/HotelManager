@@ -68,6 +68,15 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  <update id="updateByUserName" parameterType="com.hotel.bean.User" >
+    update tang_admin
+    <set >
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where username = #{username,jdbcType=VARCHAR}
+  </update>
   <update id="updateByPrimaryKey" parameterType="com.hotel.bean.User" >
     update tang_admin
     set username = #{username,jdbcType=VARCHAR},

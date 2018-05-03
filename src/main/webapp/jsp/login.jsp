@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" import="java.util.*" isELIgnored="false"%>
 <html class="bootstrap-admin-vertical-centered">
@@ -7,32 +8,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- Bootstrap -->
+        <%--<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">--%>
+        <%--<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>--%>
+        <%--<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--%>
+
         <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="<%=request.getContextPath()%>/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
 
         <!-- Bootstrap Admin Theme -->
         <link href="<%=request.getContextPath()%>/css/bootstrap-admin-theme.css" rel="stylesheet" media="screen">
 
-        <!-- Custom styles -->
-        <style type="text/css">
-            .alert{
-                margin: 0 auto 20px;
-            }
-        </style>
+        <!-- Vendors -->
+        <link href="<%=request.getContextPath()%>/vendors/easypiechart/jquery.easy-pie-chart.css" rel="stylesheet" media="screen">
+        <link href="<%=request.getContextPath()%>/vendors/easypiechart/jquery.easy-pie-chart_custom.css" rel="stylesheet" media="screen">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
-           <script type="text/javascript" src="<%=request.getContextPath()%>/js/html5shiv.js"></script>
-           <script type="text/javascript" src="<%=request.getContextPath()%>/js/respond.min.js"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/js/html5shiv.js"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/js/respond.min.js"></script>
         <![endif]-->
     </head>
     <body class="bootstrap-admin-without-padding">
         <div class="container">
             <div class="row">
-                <div class="alert alert-info" hidden="true">
-                    <a class="close" data-dismiss="alert" href="#">&times;</a>
-                    请输入正确的用户名和密码!
-                </div>
+                <c:if test="${result.message!=null}">
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <h5>${result.message}</h5>
+                    </div>
+                </c:if>
                 <form method="post" action="login1" class="bootstrap-admin-login-form">
                     <h1>登录</h1>
                     <div class="form-group">
@@ -41,29 +45,16 @@
                     <div class="form-group">
                         <input class="form-control" type="password" name="password" placeholder="密码">
                     </div>
-                    <%--<div class="form-group">--%>
-                        <%--<label>--%>
-                            <%--<input type="checkbox" name="remember_me">--%>
-                           <%--记住密码--%>
-                        <%--</label>--%>
-                    <%--</div>--%>
                     <button class="btn btn-lg btn-primary" type="submit">提交</button>
                 </form>
             </div>
         </div>
 
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <script type="text/javascript">
-            $(function() {
-                // Setting focus
-                $('input[name="email"]').focus();
-
-                // Setting width of the alert box
-                var formWidth = $('.bootstrap-admin-login-form').innerWidth();
-                var alertPadding = parseInt($('.alert').css('padding'));
-                $('.alert').width(formWidth - 2 * alertPadding);
-            });
-        </script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/js/twitter-bootstrap-hover-dropdown.min.js"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/vendors/easypiechart/jquery.easy-pie-chart.js"></script>
     </body>
 </html>

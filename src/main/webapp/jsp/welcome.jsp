@@ -6,7 +6,7 @@
 
 <html>
     <head>
-        <title>首页_Bootstrap3响应式后台主题模板Boot3Admin - cssmoban</title>
+        <title>欢迎！</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -27,9 +27,23 @@
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
-           <script type="text/javascript" src="<%=request.getContextPath()%>/js/html5shiv.js"></script>
-           <script type="text/javascript" src="<%=request.getContextPath()%>/js/respond.min.js"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/js/html5shiv.js"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/js/respond.min.js"></script>
         <![endif]-->
+        <script>
+            function toruzhu(){
+                self.location.href="<%=request.getContextPath()%>/room/rooms";//a href="<%=request.getContextPath()%>/room/rooms
+            }
+            function toindex() {
+                self.location.href="<%=request.getContextPath()%>/hello/index";
+            }
+            function loginOut() {
+                var result = confirm("你确定要退出登陆吗？");
+                if(result == true){
+                    location.replace("<%=request.getContextPath()%>/hello/loginOut"); //loginOut即是你所要转的退出登录的地址
+                }
+            }
+        </script>
     </head>
     <body class="bootstrap-admin-with-small-navbar">
     <nav class="navbar navbar-default navbar-inverse navbar-fixed-top " role="navigation">
@@ -43,7 +57,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<%=request.getContextPath()%>/hello/login">酒店后台</a>
+                    <a class="navbar-brand" href="<%=request.getContextPath()%>/hello/index">酒店后台</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -53,28 +67,21 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">下拉菜单<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="<%=request.getContextPath()%>/room/roomList">入住</a></li>
+                                <li><a href="<%=request.getContextPath()%>/order/addOrder">入住</a></li>
+                                <li><a href="<%=request.getContextPath()%>/order/updateOrder">结账</a></li>
                                 <li class="divider"></li>
-                                <li><a href="<%=request.getContextPath()%>/room/roomList">会员管理</a></li>
-                                <li><a href="<%=request.getContextPath()%>/room/roomList">客房管理</a></li>
+                                <li><a href="<%=request.getContextPath()%>/vip/vipList">会员管理</a></li>
+                                <li><a href="<%=request.getContextPath()%>/room/rooms">客房管理</a></li>
+                                <li><a href="<%=request.getContextPath()%>/order/orders">订单管理</a></li>
                             </ul>
                         </li>
                     </ul>
-                    <%--导航的搜索--%>
-                    <%--<form class="navbar-form navbar-left" role="search">--%>
-                    <%--<div class="form-group">--%>
-                    <%--<input type="text" class="form-control" placeholder="请输入内容">--%>
-                    <%--</div>--%>
-                    <%--<button type="submit" class="btn btn-default">搜索</button>--%>
-                    <%--</form>--%>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="http://www.baidu.com">链接</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">管理员<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="<%=request.getContextPath()%>/hello/login">设置</a></li>
-                                <li><a href="<%=request.getContextPath()%>/hello/login">个人资料</a></li>
-                                <li><a href="<%=request.getContextPath()%>/hello/login">账户中心</a></li>
+                                <li><a href="<%=request.getContextPath()%>/hello/update">修改密码</a></li>
                                 <li class="divider"></li>
                                 <li><a href="javascript:loginOut();">退出登录</a></li>
                             </ul>
@@ -92,32 +99,24 @@
                    <div class="alert alert-success bootstrap-admin-alert">
                        <button type="button" class="close" data-dismiss="alert">×</button>
                        <h4>欢迎管理员：${myuser.username} </h4>
-                       <h5>现在时间是${datetime},唐宋酒店欢迎您~！</h5>
+                       <h5>现在时间是${datetime},安图森酒店欢迎您~！</h5>
                    </div>
                </div>
                <div class="row">
                    <div class="well" style="margin-top:30px;">
-                       <button type="button" class="btn btn-lg btn-primary">办理入住</button>
-                       <button type="button" class="btn btn-lg btn-success">去首页</button>
+                       <button type="button" class="btn btn-lg btn-primary" onclick="toruzhu()">办理入住</button>
+                       <button type="button" class="btn btn-lg btn-success" onclick="toindex()">去首页</button>
                    </div>
                </div>
            </div>
        </div>
     </div>
 
-   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="<%=request.getContextPath()%>/js/twitter-bootstrap-hover-dropdown.min.js"></script>
-        <script type="text/javascript" src="<%=request.getContextPath()%>/vendors/easypiechart/jquery.easy-pie-chart.js"></script>
-
-        <script type="text/javascript">
-            $(function() {
-                // Easy pie charts
-                $('.easyPieChart').easyPieChart({animate: 1000});
-            });
-        </script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/twitter-bootstrap-hover-dropdown.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/vendors/easypiechart/jquery.easy-pie-chart.js"></script>
     </body>
 </html>

@@ -1,3 +1,4 @@
+
 package com.hotel.controller;
 
 import com.github.pagehelper.PageHelper;
@@ -28,21 +29,24 @@ public class VipMessageController{
     @Autowired
     private VipMesssageService vipMesssageService;
 
-    @RequestMapping("vips")
+    @RequestMapping( "vips")
     public ModelAndView queryVipListByCondition(@RequestParam(value = "pageSize",defaultValue = "5")Integer pageSize, @RequestParam(value = "pageIndex",defaultValue = "1")Integer pageIndex,VipMessage vipMessage){
         Result result = new Result();
+        if(vipMessage.getStatus()==null && vipMessage.getValid()==null && vipMessage.getVipName()==null && vipMessage.getSpendingPower()==null && vipMessage.getVipType()==null ){
+            return new ModelAndView("redirect:/vip/vipList");
+        }
         try{
             HashMap params = new HashMap<String,Object>();
             MapBean mapBean = new MapBean();
             Long sp1 = vipMessage.getSpendingPower();
-            if (vipMessage.getSpendingPower()!=0){
-                    if(sp1==100){
+            if (vipMessage.getSpendingPower()!=0 && vipMessage.getSpendingPower() != null){
+                    if(sp1<=100){
                         vipMessage.setSpendingPower(50L);
-                    }else if (sp1==200){
+                    }else if (sp1<=200){
                         vipMessage.setSpendingPower(150L);
-                    }else if (sp1==500){
+                    }else if (sp1<=500){
                         vipMessage.setSpendingPower(300L);
-                    }else if (sp1==1000){
+                    }else if (sp1<=1000){
                         vipMessage.setSpendingPower(700L);
                     }else{
                         vipMessage.setSpendingPower(2000L);
@@ -50,46 +54,46 @@ public class VipMessageController{
              }else{
                 vipMessage.setSpendingPower(null);
              }
-             if (vipMessage.getValid()==0){
+             if (vipMessage.getValid()==0 || vipMessage.getValid()==null){
                 vipMessage.setValid(null);
              }
-             if (vipMessage.getVipType()==0){
+             if (vipMessage.getVipType()==0 || vipMessage.getVipType()== null ){
                  vipMessage.setVipType(null);
              }
-             if (vipMessage.getStatus()==0){
+             if (vipMessage.getStatus()==0 ||  vipMessage.getStatus()==null){
                  vipMessage.setStatus(null);
              }
-             if (vipMessage.getVipName() == "" ){
+             if (vipMessage.getVipName() == "" ||vipMessage.getVipName() ==null){
                  vipMessage.setVipName(null);
              }
             Integer Counts = vipMesssageService.selectVipCountByCondition(vipMessage);
-            Integer pages = null;
-            if(Counts%pageSize == 0){
-                pages = Counts/pageSize;//总共多少页
-            }else{
-                pages = Counts/pageSize +1;
-            }
-            int index = ControllerUtil.getIndex(pageIndex,pageSize,Counts);
-            params.put("index",index);//
-            params.put("pageSize",pageSize);
-            mapBean.setSpendingPower(vipMessage.getSpendingPower());
-            mapBean.setStatus(vipMessage.getStatus());
-            mapBean.setValid(vipMessage.getValid());
-            mapBean.setVipName(vipMessage.getVipName());
-            mapBean.setVipType(vipMessage.getVipType());
-            mapBean.setIndex(Integer.parseInt(params.get("index").toString()));
-            mapBean.setPageSize(Integer.parseInt(params.get("pageSize").toString()));
-            List<VipMessage> vips = vipMesssageService.selectVipByCondition(mapBean);
+//            Integer pages = null;
+//            if(Counts%pageSize == 0){
+//                pages = Counts/pageSize;//总共多少页
+//            }else{
+//                pages = Counts/pageSize +1;
+//            }
+//            int index = ControllerUtil.getIndex(pageIndex,pageSize,Counts);
+//            params.put("index",index);//
+//            params.put("pageSize",pageSize);
+//            mapBean.setSpendingPower(vipMessage.getSpendingPower());
+//            mapBean.setStatus(vipMessage.getStatus());
+//            mapBean.setValid(vipMessage.getValid());
+//            mapBean.setVipName(vipMessage.getVipName());
+//            mapBean.setVipType(vipMessage.getVipType());
+//            mapBean.setIndex(Integer.parseInt(params.get("index").toString()));
+//            mapBean.setPageSize(Integer.parseInt(params.get("pageSize").toString()));
+            List<VipMessage> vips = vipMesssageService.selectVipByCondition(vipMessage);
             if(vips == null) {
                 result.setSuccess(false);
                 result.setMessage("分页查询未查到数据");
             }
-            ModelAndView view = new ModelAndView("vipList");
+            ModelAndView view = new ModelAndView("vips");
             view.getModel().put("pageInfo",vips);
             view.getModel().put("result",result);
             view.getModel().put("params",params);
             view.getModel().put("pageIndex",pageIndex);//准备去的页码，也是当前的页码
-            view.getModel().put("pages",pages);
+//            view.getModel().put("pages",pages);
             view.getModel().put("allCounts",Counts);
             return view;
 
@@ -100,7 +104,7 @@ public class VipMessageController{
         }
         return null;
     }
-    @RequestMapping(value="doDelete", method=RequestMethod.POST)
+    @RequestMapping(value="doDelete")
     public ModelAndView doDelete(Integer id,HttpSession session){
         Result result = new Result();
         if(id==null){
@@ -124,9 +128,8 @@ public class VipMessageController{
             session.setAttribute("result",result);
         }
         //这一块还有问题
-        return new ModelAndView("forward:/vipList");
+        return new ModelAndView("redirect:/vip/vipList");
     }
-
     @RequestMapping(value="doUpdate")
     public ModelAndView doUpdate(Integer id,HttpSession session){
         Result result = new Result();
@@ -141,7 +144,6 @@ public class VipMessageController{
         mv.getModel().put("vip",vip);
         return mv;
     }
-
     @RequestMapping("vipList")
     public  ModelAndView queryVipListByPage(@RequestParam(value = "pageSize",defaultValue = "5")Integer pageSize, @RequestParam(value = "pageIndex",defaultValue = "1")Integer pageIndex){
         Result result = new Result();
@@ -186,6 +188,7 @@ public class VipMessageController{
 
         return  null;
     }
+    //废弃
     @RequestMapping("vipList2")
     public ModelAndView queryAllVip(HttpSession session, @RequestParam(value = "pn",defaultValue = "1")Integer pn, Model model){
         session.setAttribute("message","这是查询roomList");
@@ -206,7 +209,7 @@ public class VipMessageController{
 
         return  view;
     }
-
+    //************增加vip***************
     @RequestMapping("add")
     public  String addVipResponse(){
         return  "addVip";
@@ -214,8 +217,8 @@ public class VipMessageController{
     @RequestMapping(value = "addVip")
     public ModelAndView addVip(VipMessage vipMessage ){
         Result result = new Result();
-        ModelAndView view = new ModelAndView("vipList");
-        if (vipMessage == null){
+        ModelAndView view = new ModelAndView("redirect:/vip/vipList");
+        if (vipMessage.getValid() ==  null){
             result.setSuccess(false);
             result.setMessage("插入内容为空");
             view.getModel().put("result",result);
@@ -254,32 +257,33 @@ public class VipMessageController{
         // result.setSuccess(true);代表插入成功
         return view;
     }
+    //**********************************
     @RequestMapping(value = "updateVip")
     public ModelAndView updateVip(VipMessage vipMessage ){
         Result result = new Result();
-        ModelAndView view = new ModelAndView("vipList");
+        ModelAndView view = new ModelAndView("redirect:/vip/vipList");
         if (vipMessage == null){
             result.setSuccess(false);
-            result.setMessage("插入内容为空");
+            result.setMessage("插入内容为空啊 ");
             view.getModel().put("result",result);
             return view;
         }
         if (vipMessage.getTimes() == null||vipMessage.getTimes()<0){
             result.setSuccess(false);
-            result.setMessage("入住次数必须大于0");
+            result.setMessage("入住次数必须大于0啊");
             view.getModel().put("result",result);
             return view;
 
         }
         if (vipMessage.getVipPhonenum()==null){
             result.setSuccess(false);
-            result.setMessage("手机号必须为11位数字");
+            result.setMessage("手机号必须为11位数字啊");
             view.getModel().put("result",result);
             return view;
         }
         if (vipMessage.getUuid().length()!=18 || vipMessage.getUuid() == null){
             result.setSuccess(false);
-            result.setMessage("请输入正确的身份证号码");
+            result.setMessage("请输入正确的身份证号码啊");
             view.getModel().put("result",result);
             return view;
         }

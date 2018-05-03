@@ -23,6 +23,6 @@ public interface VipMessageMapper {
 
     List<VipMessage> selectVipOrderByCreateTime(HashMap params);
     Integer selectCount();
-    List<VipMessage> selectVipByCondition(MapBean mapBean);
+    List<VipMessage> selectVipByCondition(VipMessage record);
     Integer selectVipCountByCondition(VipMessage record);
 }

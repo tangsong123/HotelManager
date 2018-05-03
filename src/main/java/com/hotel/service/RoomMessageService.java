@@ -11,21 +11,35 @@ import java.util.HashMap;
 import java.util.List;
 
 @Service("roomMessageService")
-public class RoomMessageService{
+public class RoomMessageService {
     @Autowired
     RoomMessageMapper roomMessageMapper;
+
+    public RoomMessage selectByPrimaryKey(Long id) {
+        return roomMessageMapper.selectByPrimaryKey(id);
+    }
 
     public List<RoomMessage> selectAll() {
         return roomMessageMapper.selectAll();
     }
-    public List<RoomMessage> selectRoomByPage(HashMap params){
+
+    public List<RoomMessage> selectRoomByPage(HashMap params) {
         return roomMessageMapper.selectRoomByPage(params);
     }
-    public Integer selectCount(){
+
+    public Integer selectCount() {
         return roomMessageMapper.selectCount();
     }
-    public List<RoomMessage> selectByCondition(RoomMessage roomMessage){
+
+    public List<RoomMessage> selectByCondition(RoomMessage roomMessage) {
         return roomMessageMapper.selectByUnique(roomMessage);
     }
 
+    public int updateByPrimaryKey(RoomMessage roomMessage) {
+        return roomMessageMapper.updateByPrimaryKey(roomMessage);
+    }
+
+    public int insertSelective(RoomMessage roomMessage) {
+        return roomMessageMapper.insertSelective(roomMessage);
+    }
 }

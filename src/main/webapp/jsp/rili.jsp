@@ -33,6 +33,7 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/html5shiv.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/respond.min.js"></script>
     <![endif]-->
+
     <style>
 
         body, td {
@@ -391,15 +392,17 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="/hello/index">首页</a></li>
-                        <li><a href="/hello/about">关于我们</a></li>
+                        <li class="active"><a href="<%=request.getContextPath()%>/hello/index">首页</a></li>
+                        <li ><a href="<%=request.getContextPath()%>/hello/about">关于我们</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">下拉菜单<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="/room/roomList">入住</a></li>
+                                <li><a href="<%=request.getContextPath()%>/order/addOrder">入住</a></li>
+                                <li><a href="<%=request.getContextPath()%>/order/updateOrder">结账</a></li>
                                 <li class="divider"></li>
-                                <li><a href="/room/roomList">会员管理</a></li>
-                                <li><a href="/room/roomList">客房管理</a></li>
+                                <li><a href="<%=request.getContextPath()%>/vip/vipList">会员管理</a></li>
+                                <li><a href="<%=request.getContextPath()%>/room/rooms">客房管理</a></li>
+                                <li><a href="<%=request.getContextPath()%>/order/orders">订单管理</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -408,9 +411,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">管理员<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="/hello/login">设置</a></li>
-                                <li><a href="/hello/login">个人资料</a></li>
-                                <li><a href="/hello/login">账户中心</a></li>
+                                <li><a href="<%=request.getContextPath()%>/hello/update">修改密码</a></li>
                                 <li class="divider"></li>
                                 <li><a href="javascript:loginOut();">退出登录</a></li>
                             </ul>
@@ -423,65 +424,30 @@
     <div class="row">
         <div class="col-md-2 bootstrap-admin-col-left">
             <ul class="nav navbar-collapse collapse bootstrap-admin-navbar-side">
-                <li>
-                    <a href="<%=request.getContextPath()%>/hello/index"><i
-                            class="glyphicon glyphicon-chevron-right"></i> 首页</a>
+                <li class="active">
+                    <a href="index.jsp"><i class="glyphicon glyphicon-chevron-right"></i> 首页</a>
+                </li>
+                <li >
+                    <a href="<%=request.getContextPath()%>/hello/about"><i class="glyphicon glyphicon-chevron-right"></i> 关于我们</a>
+                </li>
+                <li >
+                    <a href="<%=request.getContextPath()%>/hello/rili"><i class="glyphicon glyphicon-chevron-right"></i> 节假日</a><!-- calendar.html -->
+                </li>
+                <li >
+                    <a href="<%=request.getContextPath()%>/vip/vipList"><i class="glyphicon glyphicon-chevron-right"></i>会员查询</a><!-- stats.html -->
                 </li>
                 <li>
-                    <a href="<%=request.getContextPath()%>/hello/about"><i
-                            class="glyphicon glyphicon-chevron-right"></i> 关于我们</a>
+                    <a href="<%=request.getContextPath()%>/room/rooms"><i class="glyphicon glyphicon-chevron-right"></i> 客房查询</a>
                 </li>
-                <li>
-                    <a href="<%=request.getContextPath()%>/hello/rili"><i class="glyphicon glyphicon-chevron-right"></i>
-                        日历</a><!-- calendar.html -->
+                <li >
+                    <a href="<%=request.getContextPath()%>/order/orders"><span class="badge pull-right">31</span> 今日订单</a>
                 </li>
                 <li class="disabled">
-                    <a href="#"><i class="glyphicon glyphicon-chevron-right"></i> 统计图表</a><!-- stats.html -->
-                </li>
-                <li>
-                    <a href="forms.jsp"><i class="glyphicon glyphicon-chevron-right"></i> 表单</a>
-                </li>
-                <li class="active">
-                    <a href="tables.jsp"><i class="glyphicon glyphicon-chevron-right"></i> 数据表格</a>
-                </li>
-                <li>
-                    <a href="buttons-and-icons.jsp"><i class="glyphicon glyphicon-chevron-right"></i> 按钮 &amp; 图标</a>
-                </li>
-                <li>
-                    <a href="wysiwyg-editors.jsp"><i class="glyphicon glyphicon-chevron-right"></i> HTML编辑器</a>
-                </li>
-                <li>
-                    <a href="ui-and-interface.jsp"><i class="glyphicon glyphicon-chevron-right"></i> UI界面</a>
-                </li>
-                <li>
-                    <a href="#"><span class="badge pull-right">731</span> 订单</a>
-                </li>
-                <li>
-                    <a href="#"><span class="badge pull-right">812</span> 清单</a>
-                </li>
-                <li>
-                    <a href="#"><span class="badge pull-right">27</span> 客户</a>
-                </li>
-                <li>
-                    <a href="#"><span class="badge pull-right">1,234</span> 用户</a>
-                </li>
-                <li>
-                    <a href="#"><span class="badge pull-right">2,221</span> 消息</a>
-                </li>
-                <li>
-                    <a href="#"><span class="badge pull-right">11</span> 报告</a>
-                </li>
-                <li>
-                    <a href="#"><span class="badge pull-right">83</span> 错误</a>
-                </li>
-                <li>
-                    <a href="#"><span class="badge pull-right">4,231</span> 日志</a>
+                    <a href="#"><span class="badge pull-right">812</span>所有客户</a>
                 </li>
             </ul>
         </div>
-
         <form name="calendar">
-
             <table border="0" cellpadding="0" cellspacing="0" >
 
                 <tr>

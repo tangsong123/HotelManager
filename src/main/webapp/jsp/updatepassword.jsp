@@ -1,9 +1,14 @@
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
-<%-- 拦截器--%>
+<%@ taglib prefix="e" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: tangsong1
+  Date: 2018/4/11
+  Time: 20:29
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" import="java.util.*" isELIgnored="false"%>
-<%@ page import="com.hotel.bean.User" %>
-
 <html>
     <head>
         <title>修改密码</title>
@@ -27,9 +32,17 @@
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
-           <script type="text/javascript" src="<%=request.getContextPath()%>/js/html5shiv.js"></script>
-           <script type="text/javascript" src="<%=request.getContextPath()%>/js/respond.min.js"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/js/html5shiv.js"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/js/respond.min.js"></script>
         <![endif]-->
+        <script>
+            function loginOut() {
+                var result = confirm("你确定要退出登陆吗？");
+                if(result == true){
+                    location.replace("<%=request.getContextPath()%>/hello/loginOut"); //loginOut即是你所要转的退出登录的地址
+                }
+            }
+        </script>
     </head>
     <body class="bootstrap-admin-with-small-navbar">
     <nav class="navbar navbar-default navbar-inverse navbar-fixed-top " role="navigation">
@@ -53,28 +66,21 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">下拉菜单<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="<%=request.getContextPath()%>/room/roomList">入住</a></li>
+                                <li><a href="<%=request.getContextPath()%>/order/addOrder">入住</a></li>
+                                <li><a href="<%=request.getContextPath()%>/order/updateOrder">结账</a></li>
                                 <li class="divider"></li>
-                                <li><a href="<%=request.getContextPath()%>/room/roomList">会员管理</a></li>
-                                <li><a href="<%=request.getContextPath()%>/room/roomList">客房管理</a></li>
+                                <li><a href="<%=request.getContextPath()%>/vip/vipList">会员管理</a></li>
+                                <li><a href="<%=request.getContextPath()%>/room/rooms">客房管理</a></li>
+                                <li><a href="<%=request.getContextPath()%>/order/orders">订单管理</a></li>
                             </ul>
                         </li>
                     </ul>
-                    <%--导航的搜索--%>
-                    <%--<form class="navbar-form navbar-left" role="search">--%>
-                    <%--<div class="form-group">--%>
-                    <%--<input type="text" class="form-control" placeholder="请输入内容">--%>
-                    <%--</div>--%>
-                    <%--<button type="submit" class="btn btn-default">搜索</button>--%>
-                    <%--</form>--%>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="http://www.baidu.com">链接</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">管理员<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="<%=request.getContextPath()%>/hello/login">设置</a></li>
-                                <li><a href="<%=request.getContextPath()%>/hello/login">个人资料</a></li>
-                                <li><a href="<%=request.getContextPath()%>/hello/login">账户中心</a></li>
+                                <li><a href="<%=request.getContextPath()%>/hello/update">修改密码</a></li>
                                 <li class="divider"></li>
                                 <li><a href="javascript:loginOut();">退出登录</a></li>
                             </ul>
@@ -93,36 +99,42 @@
                        <div class="panel-heading">
                            <div class="text-muted bootstrap-admin-box-title">修改密码</div>
                        </div>
+                       <c:if test="${result.message!=null}">
+                           <div class="row">
+                               <div class="alert alert-success bootstrap-admin-alert">
+                                   <button type="button" class="close" data-dismiss="alert">×</button>
+                                   <h5>${result.message}</h5>
+                               </div>
+                           </div>
+                       </c:if>
                        <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
-                           <form class="form-horizontal">
-                               <fieldset>
-                                   <legend>修改密码</legend>
+                           <fieldset>
+                               <legend>修改密码</legend>
+                               <form class="form-horizontal" action="<%=request.getContextPath()%>/hello/updatepassword" method="post">
                                    <div class="form-group">
-                                       <label class="col-lg-2 control-label" for="opassword">旧密码</label>
+                                       <label class="col-lg-2 control-label" for="oPassword">旧密码</label>
                                        <div class="col-lg-10">
-                                           <input class="form-control" id="opassword" type="text" value="请输入旧密码...">
+                                           <input class="form-control" id="oPassword" name="oPassword" type="text" value="请输入旧密码...">
                                        </div>
                                    </div>
                                    <div class="form-group">
                                        <label class="col-lg-2 control-label" for="password">新密码</label>
                                        <div class="col-lg-10">
-                                           <input class="form-control" id="password" type="text" value="请输入新密码...">
+                                           <input class="form-control" id="password" name="password" type="text" value="请输入新密码...">
                                        </div>
                                    </div>
                                    <div class="form-group">
                                        <label class="col-lg-2 control-label" for="repassword">新密码</label>
                                        <div class="col-lg-10">
-                                           <input class="form-control" id="repassword" type="text" value="再次输入...">
+                                           <input class="form-control" id="repassword" name="rePassword" type="text" value="再次输入...">
                                        </div>
                                    </div>
 
                                    <div class="row">
-                                       <button type="button" class="btn btn-lg btn-primary btn-sm">修改</button>
-                                       <button type="button" class="btn btn-danger btn-sm">取消</button>
+                                       <button type="submit" class="btn btn-primary">修改</button>
                                     </div>
-                               </fieldset>
-
-                           </form>
+                               </form>
+                           </fieldset>
                        </div>
                    </div>
                </div>
@@ -130,19 +142,11 @@
        </div>
     </div>
 
-   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="<%=request.getContextPath()%>/js/twitter-bootstrap-hover-dropdown.min.js"></script>
-        <script type="text/javascript" src="<%=request.getContextPath()%>/vendors/easypiechart/jquery.easy-pie-chart.js"></script>
-
-        <script type="text/javascript">
-            $(function() {
-                // Easy pie charts
-                $('.easyPieChart').easyPieChart({animate: 1000});
-            });
-        </script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/twitter-bootstrap-hover-dropdown.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/vendors/easypiechart/jquery.easy-pie-chart.js"></script>
     </body>
 </html>

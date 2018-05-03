@@ -60,8 +60,8 @@
     <if test="spendingPower!=null">
 
       <if test="spendingPower &lt;= 100">
-      AND spending_power &lt;= 100
-    </if>
+        AND spending_power &lt;= 100
+      </if>
       <if test="spendingPower &gt; 100 &amp; spendingPower &lt;= 200">
         AND spending_power &gt; 100
         AND spending_power &lt;= 200
@@ -78,7 +78,6 @@
         AND spending_power &gt; 1000
       </if>
     </if>
-    limit #{index},#{pageSize}
   </select>
   <select id="selectVipCountByCondition" resultType="java.lang.Integer">
     SELECT
