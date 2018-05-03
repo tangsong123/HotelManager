@@ -40,8 +40,18 @@
             location.replace("<%=request.getContextPath()%>/room/add");
         }
         function ruzhu(params) {
-            alert(params);
+
             self.location.href="<%=request.getContextPath()%>/order/ruzhu?str="+params;
+        }
+        function clearRoom(a) {
+            alert("请立刻让保洁前去打扫！");
+            self.location.href="<%=request.getContextPath()%>/room/clearRoom?id="+a;
+        }
+        function doDelete(param) {
+            var i = confirm("确认删除嘛？");
+            if(i == true){
+                self.location.href="<%=request.getContextPath()%>/room/doDelete?id="+param;
+            }
         }
         function loginOut() {
             var s = confirm("你确定要退出登陆吗？");
@@ -243,39 +253,32 @@
                                         <span style="color: red">${s.status=="4"?"请立即打扫":" "}</span>
                                     </td>
                                     <td>
-                                        <c:if test="${s.status!=3}">
-                                            <button class="btn btn-primary btn-sm" onclick=ruzhu(${s.id})>
+                                        <c:if test="${s.status==4}">
+                                            <button class="btn btn-info btn-sm" id="dasao" onclick="clearRoom(${s.roomId})">
+                                                打扫
+                                            </button>
+                                        </c:if>
+                                        <c:if test="${s.status!=3&&s.status!=4}">
+                                            <button class="btn btn-primary btn-sm" id="ruzhu" onclick="ruzhu(${s.id})">
                                                 入住
                                             </button>
                                         </c:if>
-                                        <%--<button class="btn btn-primary btn-sm">--%>
-                                            <%--<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>--%>
-                                            <%--编辑--%>
-                                        <%--</button>--%>
-                                        <button class="btn btn-danger btn-sm">
+                                        <button class="btn btn-danger btn-sm" id="delete" onclick="doDelete(${s.id})">
                                             删除
                                         </button>
                                     </td>
                                 </tr>
                             </c:forEach>
-                            <%--
-                                <ul>
-                                    <li><a href='?nowPage=${nowPage-1}'>←上一页</a></li>
-                                    <c:forEach varStatus="i" begin="1" end="${sumPage}">
-                                        <c:choose>
-                                            <c:when test="${nowPage==i.count}">
-                                                <li class='disabled'>${i.count}</li>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <li  class='active'><a href='?nowPage=${i.count}'>${i.count}</a></li>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </c:forEach>
-                                    <li><a href='?nowPage=${nowPage+1}'>下一页→</a></li>
-                                </ul>
-                             --%>
                         </table>
                         <div class="row">
+                            <c:if test="${result.message!=null}">
+                                <div class="row">
+                                    <div class="alert alert-success bootstrap-admin-alert">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <h5>${result.message}</h5>
+                                    </div>
+                                </div>
+                            </c:if>
                             <div class="col-md-6">
                                 <li>当前第${pageIndex.toString()}页，总共${pages.toString()}页，总共有${allCounts.toString()}间房</li>
                             </div>

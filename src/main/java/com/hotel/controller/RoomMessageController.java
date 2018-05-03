@@ -131,7 +131,7 @@ public class RoomMessageController{
         return view;
     }
     @RequestMapping(value = "add")
-    public  String addroom(){
+    public  String add(){
         return "addRoom";
     }
     @RequestMapping(value = "addRoom")
@@ -175,5 +175,55 @@ public class RoomMessageController{
         ModelAndView  mview = new ModelAndView("index");
         mview.getModel().put("result",result);
         return mview;
+    }
+    @RequestMapping(value = "clearRoom")
+    public ModelAndView clearRoom(String id){
+        Result result = new Result();
+        if(id == null){
+            ModelAndView m28 = new ModelAndView("redirect:/room/rooms");
+            m28.getModel().put("result",result);
+            return  m28;
+        }
+        Long rid =  Long.valueOf(id);
+        RoomMessage roomMessage = roomMessageService.selectByPrimaryKey(rid);
+        if(roomMessage == null){
+            result.setMessage("未查询到这个房间");
+            result.setSuccess(false);
+            ModelAndView m20 = new ModelAndView("rooms");
+            m20.getModel().put("result",result);
+            return  m20;
+        }
+        //将待打扫的房间设置为空闲
+        roomMessage.setStatus(1);
+        int i = roomMessageService.updateByPrimaryKeySelective(roomMessage);
+        if(i == 0){
+            result.setSuccess(false);
+            result.setMessage("更新失败");
+            ModelAndView m21 = new ModelAndView("rooms");
+            m21.getModel().put("result",result);
+            return  m21;
+        }
+        result.setSuccess(true);
+        result.setMessage("更新成功！");
+        ModelAndView mv2 = new ModelAndView("redirect:/room/rooms");
+        mv2.getModel().put("result",result);
+        return  mv2;
+    }
+    @RequestMapping("doDelete")
+    public ModelAndView doDelete(String id){
+        Long rid = Long.valueOf(id);
+        //查询到这个room
+        RoomMessage roomMessage = roomMessageService.selectByPrimaryKey(rid);
+        roomMessage.setValid(2);
+        int i = roomMessageService.updateByPrimaryKey(roomMessage);
+        if(i == 0){
+            return null;
+        }
+        Result result = new Result();
+        result.setSuccess(true);
+        result.setMessage("删除成功");
+        ModelAndView mv = new ModelAndView("redirect:/room/rooms");
+        mv.getModel().put("result",result);
+        return mv;
     }
 }

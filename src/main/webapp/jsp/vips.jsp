@@ -52,11 +52,9 @@
             parent.location.href="<%=request.getContextPath()%>/vip/doUpdate?id="+param;
         }
         function  DeleteVip(param) {
-            var r=confirm("是否删除？")
-            if (r==true){
-                alert("删除了");
+
                 parent.location.href="<%=request.getContextPath()%>/vip/doDelete?id="+param;
-            }
+
         }
     </script>
 </head>

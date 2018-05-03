@@ -36,21 +36,17 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/respond.min.js"></script>
     <![endif]-->
     <script>
-        jQuery(document).ready(function() {
-            $("#clear").click(function () {
-                $("#select01").val("0");
-                $("#select02").val("0");
-                $("#select03").val("0");
-                $("#tv").attr("checked", false);
-                $("#window").attr("checked", false);
-                $("#breakfirst").attr("checked", false);
-                $("#bathroom").attr("checked", false);
-                $("#blower").attr("checked", false);
-            })
-        })
+
+        function clearRoom(param) {
+            alert("请立刻让保洁前去打扫！");
+            self.location.href="<%=request.getContextPath()%>/room/clearRoom?id="+param;
+        }
         function ruzhu(params) {
             alert(params);
             self.location.href="<%=request.getContextPath()%>/order/ruzhu?str="+params;
+        }
+        function doDelete(param) {
+            self.location.href="<%=request.getContextPath()%>/room/doDelete?id="+param;
         }
         function loginOut() {
             var s = confirm("你确定要退出登陆吗？");
@@ -249,17 +245,17 @@
                                         <span style="color: red">${s.status=="4"?"请立即打扫":" "}</span>
                                     </td>
                                     <td>
-                                        <c:if test="${s.status!=3}">
-                                            <button class="btn btn-primary btn-sm" onclick=ruzhu(${s.id})>
-
+                                        <c:if test="${s.status==4}">
+                                            <button class="btn btn-info btn-sm" id="dasao"  onclick=clearRoom(${s.id})>
+                                                打扫
+                                            </button>
+                                        </c:if>
+                                        <c:if test="${s.status!=3&&s.status!=4}">
+                                            <button class="btn btn-primary btn-sm" id="ruzhu" onclick="ruzhu(${s.id})">
                                                 入住
                                             </button>
                                         </c:if>
-                                            <%--<button class="btn btn-primary btn-sm">--%>
-                                            <%--<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>--%>
-                                            <%--编辑--%>
-                                            <%--</button>--%>
-                                        <button class="btn btn-danger btn-sm">
+                                        <button class="btn btn-danger btn-sm" id="delete" onclick="doDelete(${s.id})">
                                             删除
                                         </button>
                                     </td>

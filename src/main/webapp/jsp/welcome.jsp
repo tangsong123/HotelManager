@@ -32,11 +32,39 @@
         <![endif]-->
         <script>
             function toruzhu(){
-                self.location.href="<%=request.getContextPath()%>/room/rooms";//a href="<%=request.getContextPath()%>/room/rooms
+                self.location.href="<%=request.getContextPath()%>/room/rooms";
             }
             function toindex() {
                 self.location.href="<%=request.getContextPath()%>/hello/index";
             }
+            //*****************************************************************
+            function toord() {
+                self.location.href="<%=request.getContextPath()%>/order/addOrder";
+            }
+            function tomoney() {
+                self.location.href="<%=request.getContextPath()%>/order/queryOrder";
+            }
+            function toorders() {
+                self.location.href="<%=request.getContextPath()%>/order/orders";
+            }
+            function tolidian() {
+                self.location.href="<%=request.getContextPath()%>/order/updateOrder";
+            }function toinfo() {
+                self.location.href="<%=request.getContextPath()%>/hello/about";
+            }
+            function  tovip() {
+                self.location.href="<%=request.getContextPath()%>/vip/vipList";
+            }
+            function toaddvip() {
+                self.location.href="<%=request.getContextPath()%>/vip/add";
+            }
+            function toaddroom() {
+                self.location.href="<%=request.getContextPath()%>/room/add";
+            }
+            function togaimima() {
+                self.location.href="<%=request.getContextPath()%>/hello/update";
+            }
+            //*****************************************************************
             function loginOut() {
                 var result = confirm("你确定要退出登陆吗？");
                 if(result == true){
@@ -96,16 +124,37 @@
            <!-- content -->
            <div class="col-md-10">
                <div class="row">
-                   <div class="alert alert-success bootstrap-admin-alert">
+                   <div class="alert alert-info">
                        <button type="button" class="close" data-dismiss="alert">×</button>
-                       <h4>欢迎管理员：${myuser.username} </h4>
-                       <h5>现在时间是${datetime},安图森酒店欢迎您~！</h5>
+                       <h3>欢迎管理员：<font color="red" size="6px">&nbsp;&nbsp;${myuser.username}&nbsp;&nbsp;</font> </h3>
+                       <h4>现在时间是<font color="red" size="4px">&nbsp;&nbsp;${datetime}&nbsp;&nbsp;</font>,安图森酒店欢迎您~！</h4>
                    </div>
                </div>
-               <div class="row">
-                   <div class="well" style="margin-top:30px;">
-                       <button type="button" class="btn btn-lg btn-primary" onclick="toruzhu()">办理入住</button>
-                       <button type="button" class="btn btn-lg btn-success" onclick="toindex()">去首页</button>
+               <div class="row" align="center">
+                   <div class="bootstrap-admin-panel-content">
+                       <h4 class="buttons-title">酒店管理</h4>
+                       <p>
+                           <button type="button" class="btn btn-sm btn-default" onclick="toinfo()">酒店信息</button>
+                           <button type="button" class="btn btn-sm btn-warning" onclick="tomoney()">营业额查询</button>
+                           <button type="button" class="btn btn-sm btn-info" onclick="tovip()">查看会员</button>
+                       </p>
+                       <h4 class="buttons-title">新增操作</h4>
+                       <p>
+                           <button type="button" class="btn btn-sm btn-info" onclick="toaddvip()">增加会员</button>
+                           <button type="button" class="btn btn-sm btn-success" onclick="toaddroom()">增加房间</button>
+                           <button type="button" class="btn btn-sm btn-danger" onclick="togaimima()">修改密码</button>
+                       </p>
+                       <h4 class="buttons-title">快捷操作</h4>
+                       <p>
+                           <button type="button" class="btn btn-sm btn-primary" onclick="toruzhu()">办理入住</button>
+                           <button type="button" class="btn btn-sm btn-warning" onclick="toord()">生成订单</button>
+                           <button type="button" class="btn btn-sm btn-danger" onclick="tolidian()">旅客离店</button>
+                       </p>
+                       <h4 class="buttons-title">进入首页</h4>
+                       <p class="buttons-group">
+                           <button type="button" class="btn btn-sm btn-success" onclick="toindex()">去首页</button>
+                           <button type="button" class="btn btn-sm btn-warning" onclick="toorders()">历史订单查询</button>
+                       </p>
                    </div>
                </div>
            </div>

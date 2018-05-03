@@ -43,7 +43,7 @@
     select
     <include refid="Base_Column_List" />
     from hotel_room_message
-    WHERE 1=1
+    WHERE valid=1
     limit #{index},#{pageSize}
   </select>
 

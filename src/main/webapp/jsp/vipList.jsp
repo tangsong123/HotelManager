@@ -52,11 +52,9 @@
             parent.location.href="<%=request.getContextPath()%>/vip/doUpdate?id="+param;
         }
         function  DeleteVip(param) {
-            var r=confirm("是否删除？")
-            if (r==true){
-                alert("删除了");
+            if(confirm("是否删除？")){
                 parent.location.href="<%=request.getContextPath()%>/vip/doDelete?id="+param;
-           }
+            }
         }
     </script>
 </head>
@@ -252,7 +250,8 @@
                                         <button class="btn btn-primary btn-sm" id="updateVip" onclick="updateVip(${s.id})">
                                             编辑
                                         </button>
-                                        <button class="btn btn-danger btn-sm" id="delete" onclick="DeleteVip(${s.id})" >
+
+                                        <button class="btn btn-danger btn-sm" id="delete" onclick="DeleteVip(${s.id})">
                                             删除
                                         </button>
                                     </td>
@@ -313,31 +312,30 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/twitter-bootstrap-hover-dropdown.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/vendors/easypiechart/jquery.easy-pie-chart.js"></script>
-<script>
-    $(document).ready(function(){
-        $("#delete").bind("click",function(){
-            var r=confirm("是否删除？")
-            if (r==true){
-                var param = $("#deleteid").val();
-                $.ajax({
-                    type: "post",
-                    url: "<%=request.getContextPath()%>/vip/doDelete",
-                    dataType: 'json',
-                    data: {id:param},
-                    success: function (data) {
-                        if(data == -1)
-                            alert("该用户不存在");
-                        else
-                            $(location).attr('href','http://www.baidu.com');
-                    },
-                    error:function(){
-                        alert("删除成功!");
-                    }
-                });
-            }
-        });
-//        alert(window.location.href);
-    });
-</script>
+<%--<script>--%>
+    <%--$(document).ready(function(){--%>
+        <%--$("#delete").bind("click",function(){--%>
+            <%--var r=confirm("是否删除？")--%>
+            <%--if (r==true){--%>
+                <%--var param = $("#deleteid").val();--%>
+                <%--$.ajax({--%>
+                    <%--type: "post",--%>
+                    <%--url: "<%=request.getContextPath()%>/vip/doDelete",--%>
+                    <%--dataType: 'json',--%>
+                    <%--data: {id:param},--%>
+                    <%--success: function (data) {--%>
+                        <%--if(data == -1)--%>
+                            <%--alert("该用户不存在");--%>
+                        <%--else--%>
+                            <%--$(location).attr('href','http://www.baidu.com');--%>
+                    <%--},--%>
+                    <%--error:function(){--%>
+                        <%--alert("删除成功!");--%>
+                    <%--}--%>
+                <%--});--%>
+            <%--}--%>
+        <%--});--%>
+    <%--});--%>
+<%--</script>--%>
 </body>
 </html>

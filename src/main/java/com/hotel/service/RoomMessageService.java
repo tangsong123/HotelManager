@@ -34,7 +34,9 @@ public class RoomMessageService {
     public List<RoomMessage> selectByCondition(RoomMessage roomMessage) {
         return roomMessageMapper.selectByUnique(roomMessage);
     }
-
+    public int updateByPrimaryKeySelective(RoomMessage roomMessage){
+        return roomMessageMapper.updateByPrimaryKeySelective(roomMessage);
+    }
     public int updateByPrimaryKey(RoomMessage roomMessage) {
         return roomMessageMapper.updateByPrimaryKey(roomMessage);
     }
