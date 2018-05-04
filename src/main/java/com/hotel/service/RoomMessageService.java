@@ -31,6 +31,9 @@ public class RoomMessageService {
         return roomMessageMapper.selectCount();
     }
 
+    public Integer selectCountByIndex(){return roomMessageMapper.selectCountByIndex();}
+    public Integer selectCountByIndexTwo(){return roomMessageMapper.selectCountByIndexTwo();}
+
     public List<RoomMessage> selectByCondition(RoomMessage roomMessage) {
         return roomMessageMapper.selectByUnique(roomMessage);
     }

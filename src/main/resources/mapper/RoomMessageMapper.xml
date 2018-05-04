@@ -46,7 +46,6 @@
     WHERE valid=1
     limit #{index},#{pageSize}
   </select>
-
   <select id="selectByUnique" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
@@ -77,13 +76,23 @@
       and  status=#{status}
     </if>
   </select>
-
   <select id="selectCount" resultType="java.lang.Integer">
     select
     COUNT(id)
     from hotel_room_message
   </select>
-
+  <select id="selectCountByIndex" resultType="java.lang.Integer">
+    select
+    COUNT(id)
+    from hotel_room_message
+    where status=1
+  </select>
+  <select id="selectCountByIndexTwo" resultType="java.lang.Integer">
+    select
+    COUNT(id)
+    from hotel_room_message
+    where status=4
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from hotel_room_message
     where id = #{id,jdbcType=BIGINT}

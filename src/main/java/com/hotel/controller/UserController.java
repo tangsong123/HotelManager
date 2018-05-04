@@ -1,12 +1,16 @@
 package com.hotel.controller;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.hotel.bean.Psd;
-import com.hotel.bean.Result;
-import com.hotel.bean.User;
+import com.hotel.bean.*;
+import com.hotel.service.OrderMessageService;
+import com.hotel.service.RoomMessageService;
 import com.hotel.service.UserService;
+import com.hotel.service.VipMesssageService;
+import com.hotel.util.DateUtil;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -24,10 +29,20 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    RoomMessageService roomMessageService;
+    @Autowired
+    VipMesssageService vipMesssageService;
+    @Autowired
+    OrderMessageService orderMessageService;
 
     @RequestMapping("login")
     public String fun6(){
         return "login";
+    }
+    @RequestMapping("welcome")
+    public String fun60(){
+        return "welcome";
     }
     @RequestMapping(value = "login1" , method=RequestMethod.POST)
     public ModelAndView login(@ModelAttribute User user, HttpSession session){
@@ -58,8 +73,69 @@ public class UserController {
         return  view;
     }
     @RequestMapping("index")
-    public String fun1(){
-        return "index";
+    public ModelAndView fun1(){
+        Result result = new Result();
+        //查询剩余房间数
+        Integer roomsCount = roomMessageService.selectCountByIndex();
+        //查询待打扫房间
+        Integer roomClear = roomMessageService.selectCountByIndexTwo();
+        //查询剩余数除以总数百分比
+        Integer rooms = roomMessageService.selectCount();
+        Double x = roomsCount*1.0;
+        Double y = rooms*1.0;
+        Double c = roomClear*1.0;
+        Double z = x/y;
+        Double v = c/y;
+        DecimalFormat df1 = new DecimalFormat("##%");
+        Integer baifen = 50;
+        Integer baifen2 = 5;
+        if(df1.format(z).length() <=2){
+            baifen = Integer.parseInt(df1.format(z).substring(0,1));
+        }else{
+            baifen = Integer.parseInt(df1.format(z).substring(0,2));
+        }
+        if(df1.format(v).length() <= 2){
+            baifen2 = Integer.parseInt(df1.format(v).substring(0,1));
+        }else {
+            baifen2 = Integer.parseInt(df1.format(v).substring(0,2));
+        }
+        //查询今日营业额
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); //显示的格式
+        String date = sdf.format(new Date());
+        DateUtil dateUtil = new DateUtil();
+        //截取的是当前的 年、月
+        String year = date.substring(0,4);//2018
+        String mouth = date.substring(5,7);//5
+        String day = date.substring(8,10);//XX
+        DataTime dt = new DataTime();
+        dt.setYear(year);
+        dt.setMouth(mouth);
+        dt.setDay(day);
+        List<OrderMessage> oms = orderMessageService.selectMouthByPage(dt) ;
+        //这一块不知道money每一次循环是否都从0开始累加，待确定
+        Long moneys = new Long(0);
+        for(int j = 0;j<oms.size();j++){
+            moneys += oms.get(j).getPrice().longValue();
+        }
+        //今日产生订单
+        Integer count = orderMessageService.seletMouthCount(dt);
+        String counts = count.toString();
+        if(roomsCount == 0){
+            result.setSuccess(false);
+            result.setMessage("今日剩余房间数为0，请尽快打扫房间，腾出空闲房间！");
+        }
+        if(counts.equals(0)){
+            counts = "今日还未产生订单";
+        }
+        ModelAndView mv = new ModelAndView("index");
+        mv.getModel().put("result",result);
+        mv.getModel().put("roomsCount",roomsCount);//剩余房间
+        mv.getModel().put("roomClear",roomClear);//待打扫房间
+        mv.getModel().put("moneys",moneys);//今日营业额
+        mv.getModel().put("counts",counts);//今日产生订单
+        mv.getModel().put("baifen",baifen);
+        mv.getModel().put("baifen2",baifen2);
+        return mv;
     }
     //loginOut
     @RequestMapping("loginOut")
@@ -169,13 +245,4 @@ public class UserController {
         m9.getModel().put("result",result);
         return m9;
     }
-    //获取所有User
-    @RequestMapping("req2")
-    public String queryAllUser(){
-        //List<DeleteUser> deleteUsers =  userService.getAll();
-        //System.out.print(deleteUsers);
-
-        return "UserList";
-    }
-
 }

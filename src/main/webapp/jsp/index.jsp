@@ -52,12 +52,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<%=request.getContextPath()%>/hello/login">酒店后台</a>
+                    <a class="navbar-brand" href="<%=request.getContextPath()%>/hello/index">酒店后台</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="<%=request.getContextPath()%>/hello/index">首页</a></li>
+                        <li class="active"><a href="<%=request.getContextPath()%>/hello/welcome">快捷入口</a></li>
                         <li ><a href="<%=request.getContextPath()%>/hello/about">关于我们</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">下拉菜单<b class="caret"></b></a>
@@ -135,20 +135,20 @@
                        </div>
                        <div class="bootstrap-admin-panel-content bootstrap-admin-no-table-panel-content collapse in">
                            <div class="col-md-3">
-                               <div class="easyPieChart" data-percent="100" style="width: 110px; height: 110px; line-height: 110px;">8间<canvas width="110" height="110"></canvas></div>
-                               <div class="chart-bottom-heading"><span class="label label-info">今日剩余房间数</span></div>
+                               <div class="easyPieChart" data-percent="${baifen}" style="width: 110px; height: 110px; line-height: 110px;">${roomsCount}间<canvas width="110" height="110"></canvas></div>
+                               <div class="chart-bottom-heading"><span class="label label-info">今日<a href="<%=request.getContextPath()%>/room/rooms">剩余房间</a>数</span></div>
                            </div>
                            <div class="col-md-3">
-                               <div class="easyPieChart" data-percent="100" style="width: 110px; height: 110px; line-height: 110px;">53个<canvas width="110" height="110"></canvas></div>
-                               <div class="chart-bottom-heading"><span class="label label-info">今日新增会员</span></div>
+                               <div class="easyPieChart" data-percent="${baifen2}" style="width: 110px; height: 110px; line-height: 110px;">${roomClear}间<canvas width="110" height="110"></canvas></div>
+                               <div class="chart-bottom-heading"><span class="label label-info">待<a href="<%=request.getContextPath()%>/room/queryByCondition?roomType=0&roomBedNum=0&status=4">打扫</a>房间</span></div>
                            </div>
                            <div class="col-md-3">
-                               <div class="easyPieChart" data-percent="100" style="width: 110px; height: 110px; line-height: 110px;">36单<canvas width="110" height="110"></canvas></div>
-                               <div class="chart-bottom-heading"><span class="label label-info">今日产生订单</span></div>
+                               <div class="easyPieChart" data-percent="100" style="width: 110px; height: 110px; line-height: 110px;">${counts}单<canvas width="110" height="110"></canvas></div>
+                               <div class="chart-bottom-heading"><span class="label label-info">今日产生<a href="<%=request.getContextPath()%>/order/orders">订单</a></span></div>
                            </div>
                            <div class="col-md-3">
-                               <div class="easyPieChart" data-percent="100" style="width: 110px; height: 110px; line-height: 110px;">829￥<canvas width="110" height="110"></canvas></div>
-                               <div class="chart-bottom-heading"><span class="label label-info">今日营业收入</span></div>
+                               <div class="easyPieChart" data-percent="100" style="width: 110px; height: 110px; line-height: 110px;">${moneys}元<canvas width="110" height="110"></canvas></div>
+                               <div class="chart-bottom-heading"><span class="label label-info">今日<a href="<%=request.getContextPath()%>/order/queryOrder"> 营业收入</a></span></div>
                            </div>
                        </div>
                    </div>

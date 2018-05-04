@@ -181,7 +181,7 @@
                                     <td>${s.adminName}</td>
                                     <td>
                                         <c:if test="${s.isInvoice==1}">
-                                            <button class="btn btn-primary btn-sm" id="invoice" onclick="invoice(${s.id})">
+                                            <button class="btn btn-danger btn-sm" id="invoice" onclick="invoice(${s.id})">
                                                 补开发票
                                             </button>
                                         </c:if>

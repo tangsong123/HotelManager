@@ -22,5 +22,8 @@ public interface RoomMessageMapper {
     List<RoomMessage> selectRoomByPage(HashMap params);
 
     Integer selectCount();
+    Integer selectCountByIndex();
+    Integer selectCountByIndexTwo();
     List<RoomMessage> selectByUnique(RoomMessage record);
+
 }

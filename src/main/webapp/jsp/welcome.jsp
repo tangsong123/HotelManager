@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
 <%-- 拦截器--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -124,11 +125,13 @@
            <!-- content -->
            <div class="col-md-10">
                <div class="row">
-                   <div class="alert alert-info">
-                       <button type="button" class="close" data-dismiss="alert">×</button>
-                       <h3>欢迎管理员：<font color="red" size="6px">&nbsp;&nbsp;${myuser.username}&nbsp;&nbsp;</font> </h3>
-                       <h4>现在时间是<font color="red" size="4px">&nbsp;&nbsp;${datetime}&nbsp;&nbsp;</font>,安图森酒店欢迎您~！</h4>
-                   </div>
+                   <c:if test="${datetime != null}">
+                       <div class="alert alert-info">
+                           <button type="button" class="close" data-dismiss="alert">×</button>
+                           <h3>欢迎管理员：<font color="red" size="6px">&nbsp;&nbsp;${myuser.username}&nbsp;&nbsp;</font> </h3>
+                           <h4>现在时间是<font color="red" size="4px">&nbsp;&nbsp;${datetime}&nbsp;&nbsp;</font>,安图森酒店欢迎您~！</h4>
+                       </div>
+                   </c:if>
                </div>
                <div class="row" align="center">
                    <div class="bootstrap-admin-panel-content">

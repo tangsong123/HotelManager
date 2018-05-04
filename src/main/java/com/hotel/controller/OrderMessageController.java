@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -30,9 +31,17 @@ public class OrderMessageController {
     private RoomMessageService roomMessageService;
 
 //    public static void main(String[] args){
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); //显示的格式
-//        String date = sdf.format(new Date());
-//        System.out.print(date.substring(5,7));
+////        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); //显示的格式
+////        String date = sdf.format(new Date());
+////        System.out.print(date.substring(5,7));
+//        Integer roomsCount =24;
+//        Integer rooms = 33;
+//        Double x = roomsCount*1.0;
+//        Double y = rooms*1.0;
+//        Double z = x/y;
+//        DecimalFormat df1 = new DecimalFormat("##%");
+//        String baifen = df1.format(z).substring(0,2);
+//        System.out.print(baifen);
 //    }
     //从前台传入room数据到订单，待生成订单
     @RequestMapping(value = "ruzhu", method = RequestMethod.GET)
