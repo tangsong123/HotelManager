@@ -221,7 +221,7 @@ public class RoomMessageController{
         }
         Result result = new Result();
         result.setSuccess(true);
-        result.setMessage("删除成功");
+        result.setMessage("删除房间成功");
         ModelAndView mv = new ModelAndView("redirect:/room/rooms");
         mv.getModel().put("result",result);
         return mv;
